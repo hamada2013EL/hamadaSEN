@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محدد حساسيات فري فاير</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; font-family: sans-serif; }
+        body { background-color: #121212; color: #fff; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px; }
+        .container { background-color: #1e1e1e; padding: 25px; border-radius: 15px; width: 100%; max-width: 420px; border: 1px solid #ff4500; text-align: center; }
+        h2 { color: #ff4500; margin-bottom: 20px; }
+        .btn-social { width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 15px; }
+        .btn-google { background-color: #ffffff; color: #333; }
+        .btn-facebook { background-color: #1877f2; color: #fff; }
+        .btn-guest { background-color: #333; color: #fff; margin-top: 10px; }
+        .main-app { display: none; text-align: right; margin-top: 20px; }
+        label { display: block; margin-top: 10px; font-weight: bold; }
+        select { width: 100%; padding: 10px; margin-top: 5px; border-radius: 6px; background: #2a2a2a; color: #fff; border: 1px solid #444; }
+        .btn-calc { width: 100%; background: #ff4500; color: #fff; border: none; padding: 12px; margin-top: 20px; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; }
+        .results { margin-top: 15px; background: #252525; padding: 15px; border-radius: 8px; display: none; }
+        .res-item { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #333; }
+        .highlight { color: #ff4500; font-weight: bold; }
+        .user-box { background: #2a2a2a; padding: 10px; border-radius: 8px; margin-bottom: 15px; color: #ffcc00; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>🎯 حساسيات فري فاير</h2>
+
+    <!-- قسم تسجيل الدخول -->
+    <div id="auth-box">
+        <p style="margin-bottom: 15px;">اختر طريقة الدخول للاستمرار:</p>
+        <button class="btn-social btn-google" onclick="login('Google')"><i class="fa-brands fa-google" style="color: #ea4335;"></i> الدخول بحساب Google</button>
+        <button class="btn-social btn-facebook" onclick="login('Facebook')"><i class="fa-brands fa-facebook-f"></i> الدخول بحساب Facebook</button>
+        <button class="btn-social btn-guest" onclick="login('زائر')">الدخول كزائر</button>
+    </div>
+
+    <!-- تطبيق الحساسيات -->
+    <div id="main-app" class="main-app">
+        <div class="user-box" id="user-info">مرحباً بك!</div>
+
+        <label for="brand">نوع الجهاز:</label>
+        <select id="brand">
+            <option value="honor">Honor (هونر)</option>
+            <option value="samsung">Samsung (سامسونج)</option>
+            <option value="xiaomi">Xiaomi / Poco (شاومي)</option>
+            <option value="iphone">iPhone (آيفون)</option>
+            <option value="other">جهاز آخر / أندرويد عام</option>
+        </select>
+
+        <label for="ram">حجم الذاكرة (RAM):</label>
+        <select id="ram">
+            <option value="4" selected>4 جيجابايت</option>
+            <option value="6">6 جيجابايت</option>
+            <option value="8">8 جيجابايت أو أعلى</option>
+        </select>
+
+        <button class="btn-calc" onclick="calculate()">حساب الحساسية 🚀</button>
+
+        <div class="results" id="results">
+            <div class="res-item"><span>العام:</span> <span class="highlight" id="res-gen">-</span></div>
+            <div class="res-item"><span>نقطة حمراء:</span> <span class="highlight" id="res-red">-</span></div>
+            <div class="res-item"><span>عدسة 2x:</span> <span class="highlight" id="res-2x">-</span></div>
+            <div class="res-item"><span>عدسة 4x:</span> <span class="highlight" id="res-4x">-</span></div>
+            <div class="res-item"><span>DPI المقترح:</span> <span class="highlight" id="res-dpi">-</span></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function login(type) {
+        document.getElementById("auth-box").style.display = "none";
+        document.getElementById("main-app").style.display = "block";
+        document.getElementById("user-info").innerText = "تم الدخول بواسطة: " + type;
+    }
+
+    function calculate() {
+        const brand = document.getElementById("brand").value;
+        let gen = 100, red = 95, scope2 = 90, scope4 = 85, dpi = 410;
+
+        if (brand === "honor") {
+            gen = 98; red = 92; scope2 = 88; scope4 = 82; dpi = 420;
+        }
+
+        document.getElementById("res-gen").innerText = gen;
+        document.getElementById("res-red").innerText = red;
+        document.getElementById("res-2x").innerText = scope2;
+        document.getElementById("res-4x").innerText = scope4;
+        document.getElementById("res-dpi").innerText = dpi;
+        document.getElementById("results").style.display = "block";
+    }
+</script>
+
+</body>
+</html>
