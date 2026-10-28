@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Fire Sensitivity & Performance Booster | hamada2013EL</title>
+  <!-- Google Fonts & FontAwesome Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --bg-color: #0b0e14;
+      --card-bg: #151a23;
+      --accent-ff: #ff4655;
+      --accent-gold: #ffb800;
+      --text-main: #ffffff;
+      --text-dim: #9aa0a6;
+      --whatsapp-color: #25d366;
+      --youtube-color: #ff0000;
+      --tiktok-color: #00f2fe;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Tajawal', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      min-height: 100vh;
+      padding-bottom: 40px;
+    }
+
+    /* Header & Social Bar */
+    .top-bar {
+      background: rgba(21, 26, 35, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 70, 85, 0.2);
+      padding: 12px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .brand-title {
+      font-size: 1.2rem;
+      font-weight: 900;
+      color: var(--accent-ff);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 20px;
+      text-decoration: none;
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 700;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .social-btn:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.2);
+    }
+
+    .social-btn.yt { background-color: var(--youtube-color); }
+    .social-btn.tk { background: linear-gradient(45deg, #ff0050, #00f2fe); }
+    .social-btn.wa { background-color: var(--whatsapp-color); }
+
+    /* Layout Containers */
+    .container {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 0 15px;
+    }
+
+    .hero-banner {
+      text-align: center;
+      padding: 30px 15px;
+      background: linear-gradient(180deg, rgba(255,70,85,0.15) 0%, rgba(11,14,20,0) 100%);
+      border-radius: 16px;
+      margin-bottom: 25px;
+    }
+
+    .hero-banner h1 {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--accent-gold);
+      margin-bottom: 8px;
+    }
+
+    .hero-banner p {
+      color: var(--text-dim);
+      font-size: 0.95rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--accent-ff);
+      margin-bottom: 15px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-bottom: 10px;
+    }
+
+    /* Auth Buttons */
+    .auth-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .auth-btn {
+      flex: 1;
+      min-width: 180px;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: #fff;
+      transition: background 0.3s;
+    }
+
+    .auth-btn.google { background-color: #ea4335; }
+    .auth-btn.fb { background-color: #1877f2; }
+
+    /* Hardware Display */
+    .spec-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+
+    .spec-item {
+      background: rgba(0, 0, 0, 0.2);
+      padding: 12px;
+      border-radius: 10px;
+      border-right: 3px solid var(--accent-gold);
+    }
+
+    .spec-title {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+
+    .spec-value {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-top: 4px;
+    }
+
+    /* Graphics Setup Badge */
+    .gfx-box {
+      background: rgba(255, 184, 0, 0.1);
+      border: 1px dashed var(--accent-gold);
+      border-radius: 12px;
+      padding: 15px;
+      margin-top: 15px;
+    }
+
+    .gfx-box h4 {
+      color: var(--accent-gold);
+      margin-bottom: 8px;
+    }
+
+    /* Actions */
+    .action-btn {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(90deg, #ff4655, #ff7300);
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(255, 70, 85, 0.4);
+      transition: transform 0.2s;
+    }
+
+    .action-btn:active {
+      transform: scale(0.98);
+    }
+
+    /* Results */
+    .result-box {
+      display: none;
+      margin-top: 15px;
+      padding: 15px;
+      background: rgba(37, 211, 102, 0.1);
+      border: 1px solid #25d366;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- الشريط العلوي مع روابط القنوات المباشرة -->
+  <header class="top-bar">
+    <div class="brand-title">
+      <i class="fa-solid fa-crosshairs"></i> hamada2013EL
+    </div>
+    <div class="social-links">
+      <a href="https://youtube.com/@hamada2013el?si=gXaNZuv35P16Qqe8" target="_blank" rel="noopener noreferrer" class="social-btn yt">
+        <i class="fa-brands fa-youtube"></i> يوتيوب
+      </a>
+      <a href="https://tiktok.com/@hamada2013el" target="_blank" rel="noopener noreferrer" class="social-btn tk">
+        <i class="fa-brands fa-tiktok"></i> تيك توك
+      </a>
+      <a href="https://whatsapp.com/channel/0029VbD4lmYKQuJFAxU2Lo0d" target="_blank" rel="noopener noreferrer" class="social-btn wa">
+        <i class="fa-brands fa-whatsapp"></i> واتساب
+      </a>
+    </div>
+  </header>
+
+  <div class="container">
+    
+    <!-- Hero Banner -->
+    <div class="hero-banner">
+      <h1>مُولّد الحساسية وفاحص الأداء الذكي</h1>
+      <p>احصل على أفضل إعدادات Free Fire المخصصة لمواصفات جهازك بالضبط</p>
+    </div>
+
+    <!-- Login Options -->
+    <div class="card">
+      <div class="card-header">
+        <i class="fa-solid fa-user-shield"></i> تسجيل الدخول للتخصيص
+      </div>
+      <div class="auth-buttons">
+        <button class="auth-btn google" onclick="handleLogin('Google')">
+          <i class="fa-brands fa-google"></i> دخول بواسطة Google
+        </button>
+        <button class="auth-btn fb" onclick="handleLogin('Facebook')">
+          <i class="fa-brands fa-facebook"></i> دخول بواسطة Facebook
+        </button>
+      </div>
+    </div>
+
+    <!-- Hardware Detection -->
+    <div class="card">
+      <div class="card-header">
+        <i class="fa-solid fa-microchip"></i> قراءة مواصفات الجهاز والحساسية
+      </div>
+      <div class="spec-grid">
+        <div class="spec-item">
+          <div class="spec-title">أنوية المعالج (CPU Cores)</div>
+          <div class="spec-value" id="cpu-cores">جاري الفحص...</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-title">كارت الشاشة (GPU)</div>
+          <div class="spec-value" id="gpu-info">جاري الفحص...</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-title">نظام التشغيل</div>
+          <div class="spec-value" id="os-info">جاري الفحص...</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-title">مستوى البطارية</div>
+          <div class="spec-value" id="battery-info">جاري الفحص...</div>
+        </div>
+      </div>
+
+      <!-- Graphics Recommended -->
+      <div class="gfx-box">
+        <h4><i class="fa-solid fa-sliders"></i> إعدادات الجرافيكس الموصى بها في اللعبة:</h4>
+        <p id="gfx-recommendation">جاري تحليل قوة المعالج لتحديد أفضل جرافيكس...</p>
+      </div>
+    </div>
+
+    <!-- Booster Action -->
+    <div class="card">
+      <button class="action-btn" onclick="boostAndGenerate()">
+        <i class="fa-solid fa-bolt"></i> تحسين الأداء وتوليد الحساسية المثالية
+      </button>
+
+      <div class="result-box" id="result-box">
+        <h3><i class="fa-solid fa-check-circle"></i> تم توليد الحساسية بنجاح!</h3>
+        <p id="sens-details" style="margin-top: 10px; font-weight: 700;"></p>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    جميع الحقوق محفوظة © 2026 لقناة <strong>hamada2013EL</strong>
+  </footer>
+
+  <script>
+    // 1. Hardware Detection Script
+    function detectHardware() {
+      // Cores
+      const cores = navigator.hardwareConcurrency || 'غير معروف';
+      document.getElementById('cpu-cores').innerText = `${cores} أنوية`;
+
+      // OS & Platform
+      const platform = navigator.platform || '';
+      let os = 'جهاز غير معروف';
+      if (/Android/i.test(navigator.userAgent)) os = 'أندرويد (Android)';
+      else if (/iPhone|iPad/i.test(navigator.userAgent)) os = 'آيفون / آيباد (iOS)';
+      else if (/Win/i.test(platform)) os = 'كمبيوتر (Windows)';
+      document.getElementById('os-info').innerText = os;
+
+      // GPU Detection via WebGL
+      try {
+        const canvas = document.createElement('canvas');
+        const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+        if (gl) {
+          const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+          const renderer = debugInfo ? gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL) : 'مدمج';
+          document.getElementById('gpu-info').innerText = renderer.split('/')[0].replace('ANGLE (', '');
+        } else {
+          document.getElementById('gpu-info').innerText = 'غير مدعوم';
+        }
+      } catch (e) {
+        document.getElementById('gpu-info').innerText = 'قياسي';
+      }
+
+      // Battery
+      if (navigator.getBattery) {
+        navigator.getBattery().then(battery => {
+          updateBattery(battery);
+          battery.addEventListener('levelchange', () => updateBattery(battery));
+        });
+      } else {
+        document.getElementById('battery-info').innerText = 'غير متاح';
+      }
+
+      // Graphics Recommendation
+      let gfx = "ناعم (Smooth) + معدل إطارات مرتفع (High FPS)";
+      if (cores >= 8) {
+        gfx = "فائق (Ultra) + 90 FPS + تشغيل الظلال";
+      } else if (cores >= 4) {
+        gfx = "قياسي (Standard) + High FPS";
+      }
+      document.getElementById('gfx-recommendation').innerText = gfx;
+    }
+
+    function updateBattery(battery) {
+      const level = Math.round(battery.level * 100);
+      const charging = battery.charging ? ' (جاري الشحن)' : '';
+      document.getElementById('battery-info').innerText = `${level}%${charging}`;
+    }
+
+    // 2. Mock Login Handling
+    function handleLogin(provider) {
+      alert(`جاري توجيهك لتسجيل الدخول عبر ${provider}...`);
+    }
+
+    // 3. Sensitivity Generation
+    function boostAndGenerate() {
+      const resultBox = document.getElementById('result-box');
+      const sensDetails = document.getElementById('sens-details');
+      
+      const redDot = Math.floor(Math.random() * 15) + 85;
+      const scope2x = Math.floor(Math.random() * 10) + 88;
+      const scope4x = Math.floor(Math.random() * 8) + 90;
+      
+      sensDetails.innerHTML = `
+        عام: 100 | نقطة حمراء: ${redDot} | سكوب 2X: ${scope2x} | سكوب 4X: ${scope4x} <br>
+        <span style="color: var(--accent-gold);">زر الإطلاق الموصى به: 48% - 52%</span>
+      `;
+      
+      resultBox.style.display = 'block';
+    }
+
+    window.onload = detectHardware;
+  </script>
+</body>
+</html>
