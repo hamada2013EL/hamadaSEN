@@ -391,3 +391,465 @@
   </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Fire Pro Suite | hamada2013EL</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --bg-color: #f4f5f7;
+      --card-bg: #ffffff;
+      --text-main: #111827;
+      --text-dim: #4b5563;
+      --accent-ff: #ff4655;
+      --accent-gold: #d97706;
+      --border-color: #e5e7eb;
+      --input-bg: #f9fafb;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-color: #0b0e14;
+        --card-bg: #151a23;
+        --text-main: #ffffff;
+        --text-dim: #9aa0a6;
+        --accent-ff: #ff4655;
+        --accent-gold: #ffb800;
+        --border-color: rgba(255, 255, 255, 0.08);
+        --input-bg: rgba(0, 0, 0, 0.3);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Tajawal', sans-serif;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      min-height: 100vh;
+      padding-bottom: 50px;
+    }
+
+    .top-bar {
+      background: var(--card-bg);
+      border-bottom: 1px solid var(--border-color);
+      padding: 12px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .brand-title {
+      font-size: 1.2rem;
+      font-weight: 900;
+      color: var(--accent-ff);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 20px;
+      text-decoration: none;
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .social-btn.yt { background-color: #ff0000; }
+    .social-btn.tk { background: linear-gradient(45deg, #ff0050, #00f2fe); }
+    .social-btn.wa { background-color: #25d366; }
+
+    .container {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 0 15px;
+    }
+
+    .hero-banner {
+      text-align: center;
+      padding: 35px 15px;
+      background: linear-gradient(180deg, rgba(255,70,85,0.1) 0%, transparent 100%);
+      border-radius: 16px;
+      margin-bottom: 25px;
+    }
+
+    .hero-banner h1 {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--accent-gold);
+      margin-bottom: 8px;
+    }
+
+    .hero-banner p {
+      color: var(--text-dim);
+      font-size: 0.95rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--accent-ff);
+      margin-bottom: 15px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 10px;
+    }
+
+    .login-box {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .login-input {
+      flex: 1;
+      min-width: 200px;
+      padding: 12px 15px;
+      border-radius: 10px;
+      border: 1px solid var(--border-color);
+      background: var(--input-bg);
+      color: var(--text-main);
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .login-btn {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 10px;
+      background: var(--accent-ff);
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .user-welcome {
+      display: none;
+      font-weight: 700;
+      color: var(--accent-gold);
+      padding: 5px 0;
+    }
+
+    .spec-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+
+    .spec-item {
+      background: var(--input-bg);
+      padding: 12px;
+      border-radius: 10px;
+      border-right: 3px solid var(--accent-gold);
+    }
+
+    .spec-title {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+
+    .spec-value {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-top: 4px;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .option-group label {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      margin-bottom: 5px;
+    }
+
+    .option-select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid var(--border-color);
+      background: var(--input-bg);
+      color: var(--text-main);
+      font-weight: 700;
+      outline: none;
+    }
+
+    .action-btn {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(90deg, #ff4655, #ff7300);
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(255, 70, 85, 0.3);
+      margin-top: 10px;
+    }
+
+    .result-box {
+      display: none;
+      margin-top: 15px;
+      padding: 18px;
+      background: var(--input-bg);
+      border: 1px solid var(--accent-gold);
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="top-bar">
+    <div class="brand-title">
+      <i class="fa-solid fa-crosshairs"></i> hamada2013EL
+    </div>
+    <div class="social-links">
+      <a href="https://youtube.com/@hamada2013el?si=gXaNZuv35P16Qqe8" target="_blank" class="social-btn yt"><i class="fa-brands fa-youtube"></i> يوتيوب</a>
+      <a href="https://tiktok.com/@hamada2013el" target="_blank" class="social-btn tk"><i class="fa-brands fa-tiktok"></i> تيك توك</a>
+      <a href="https://whatsapp.com/channel/0029VbD4lmYKQuJFAxU2Lo0d" target="_blank" class="social-btn wa"><i class="fa-brands fa-whatsapp"></i> واتساب</a>
+    </div>
+  </header>
+
+  <div class="container">
+    
+    <div class="hero-banner">
+      <h1>منصة المحترفين المتكاملة</h1>
+      <p>تخصيص كامل للحساسية، الأداء، واختيارات أسلوب اللعب المتقدمة</p>
+    </div>
+
+    <!-- نافذة تسجيل الدخول الجاهز -->
+    <div class="card">
+      <div class="card-header">
+        <i class="fa-solid fa-user-circle"></i> تسجيل دخول اللاعب
+      </div>
+      <div class="login-box" id="login-container">
+        <input type="text" id="player-name" class="login-input" placeholder="اكتب اسمك أو الايدي الخاص بك...">
+        <button class="login-btn" onclick="savePlayerName()">دخول المنصة</button>
+      </div>
+      <div class="user-welcome" id="user-welcome">
+        مرحباً بك يا بطل: <span id="displayed-name" style="color:var(--text-main)"></span> 🟢 (<a href="#" onclick="logoutPlayer()" style="color:var(--accent-ff); font-size:0.85rem;">تغيير</a>)
+      </div>
+    </div>
+
+    <!-- فاحص العتاد -->
+    <div class="card">
+      <div class="card-header">
+        <i class="fa-solid fa-microchip"></i> تقرير عتاد الجهاز الفوري
+      </div>
+      <div class="spec-grid">
+        <div class="spec-item"><div class="spec-title">أنوية المعالج</div><div class="spec-value" id="cpu-cores">جاري الفحص...</div></div>
+        <div class="spec-item"><div class="spec-title">معالج الرسوميات</div><div class="spec-value" id="gpu-info">جاري الفحص...</div></div>
+        <div class="spec-item"><div class="spec-title">نظام التشغيل</div><div class="spec-value" id="os-info">جاري الفحص...</div></div>
+        <div class="spec-item"><div class="spec-title">حالة البطارية</div><div class="spec-value" id="battery-info">جاري الفحص...</div></div>
+      </div>
+    </div>
+
+    <!-- اختيارات متقدمة كثيرة -->
+    <div class="card">
+      <div class="card-header">
+        <i class="fa-solid fa-sliders"></i> خيارات التخصيص والتحكم الدقيق
+      </div>
+      <div class="options-grid">
+        <div class="option-group">
+          <label>نوع السلاح الأساسي</label>
+          <select id="weapon-type" class="option-select">
+            <option value="shotgun">شوتجان (M1887 / SPAS)</option>
+            <option value="smg">رشاش خفيف (MP40 / MP5)</option>
+            <option value="ar">هجومي (SCAR / M4A1)</option>
+            <option value="sniper">قنص (AWM / Woodpecker)</option>
+          </select>
+        </div>
+        <div class="option-group">
+          <label>سرعة الاستجابة (DPI)</label>
+          <select id="dpi-level" class="option-select">
+            <option value="low">منخفض (500 - 600)</option>
+            <option value="mid" selected>متوسط (700 - 800)</option>
+            <option value="high">عالي (900 - سريعة جداً)</option>
+          </select>
+        </div>
+        <div class="option-group">
+          <label>نمط اللعب المفضل</label>
+          <select id="play-style" class="option-select">
+            <option value="rush">راشتر هجومي (Rusher)</option>
+            <option value="support">دعم ومساندة (Support)</option>
+            <option value="lone">لعب فردي / سولو (Solo)</option>
+          </select>
+        </div>
+        <div class="option-group">
+          <label>جودة الجرافيكس المستهدفة</label>
+          <select id="gfx-preset" class="option-select">
+            <option value="smooth">أداء فائق (Smooth 90FPS)</option>
+            <option value="standard">متوازن (Standard)</option>
+            <option value="ultra">رسوميات عالية (Ultra HD)</option>
+          </select>
+        </div>
+      </div>
+
+      <button class="action-btn" onclick="generateAdvancedSens()">
+        <i class="fa-solid fa-wand-magic-sparkles"></i> توليد الحساسية والاختيارات المتقدمة الآن
+      </button>
+
+      <div class="result-box" id="result-box">
+        <h3><i class="fa-solid fa-check-circle" style="color:var(--accent-gold)"></i> إعداداتك المخصصة جاهزة</h3>
+        <p id="sens-details" style="margin-top: 10px; font-weight: 700; line-height: 1.6;"></p>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    جميع الحقوق محفوظة © 2026 لقناة <strong>hamada2013EL</strong>
+  </footer>
+
+  <script>
+    function detectHardware() {
+      const cores = navigator.hardwareConcurrency || 'غير معروف';
+      document.getElementById('cpu-cores').innerText = `${cores} أنوية`;
+
+      const platform = navigator.platform || '';
+      let os = 'جهاز غير معروف';
+      if (/Android/i.test(navigator.userAgent)) os = 'أندرويد (Android)';
+      else if (/iPhone|iPad/i.test(navigator.userAgent)) os = 'آيفون / آيباد (iOS)';
+      else if (/Win/i.test(platform)) os = 'كمبيوتر (Windows)';
+      document.getElementById('os-info').innerText = os;
+
+      try {
+        const canvas = document.createElement('canvas');
+        const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+        if (gl) {
+          const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+          const renderer = debugInfo ? gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL) : 'مدمج';
+          document.getElementById('gpu-info').innerText = renderer.split('/')[0].replace('ANGLE (', '');
+        } else {
+          document.getElementById('gpu-info').innerText = 'قياسي';
+        }
+      } catch (e) {
+        document.getElementById('gpu-info').innerText = 'قياسي';
+      }
+
+      if (navigator.getBattery) {
+        navigator.getBattery().then(battery => {
+          updateBattery(battery);
+          battery.addEventListener('levelchange', () => updateBattery(battery));
+        });
+      } else {
+        document.getElementById('battery-info').innerText = 'غير متاح';
+      }
+    }
+
+    function updateBattery(battery) {
+      const level = Math.round(battery.level * 100);
+      const charging = battery.charging ? ' (جاري الشحن)' : '';
+      document.getElementById('battery-info').innerText = `${level}%${charging}`;
+    }
+
+    function savePlayerName() {
+      const name = document.getElementById('player-name').value.trim();
+      if(!name) {
+        alert('برجاء كتابة اسمك أو الايدي أولاً!');
+        return;
+      }
+      localStorage.setItem('hamada_player', name);
+      showUser(name);
+    }
+
+    function showUser(name) {
+      document.getElementById('login-container').style.display = 'none';
+      document.getElementById('user-welcome').style.display = 'block';
+      document.getElementById('displayed-name').innerText = name;
+    }
+
+    function logoutPlayer() {
+      localStorage.removeItem('hamada_player');
+      document.getElementById('user-welcome').style.display = 'none';
+      document.getElementById('login-container').style.display = 'flex';
+      document.getElementById('player-name').value = '';
+    }
+
+    function generateAdvancedSens() {
+      const weapon = document.getElementById('weapon-type').value;
+      const dpi = document.getElementById('dpi-level').value;
+      const style = document.getElementById('play-style').value;
+      
+      let baseVal = 90;
+      if(weapon === 'shotgun') baseVal = 95;
+      if(weapon === 'smg') baseVal = 92;
+      if(dpi === 'high') baseVal -= 5;
+
+      const redDot = Math.floor(Math.random() * 5) + baseVal;
+      const scope2x = Math.floor(Math.random() * 6) + (baseVal - 2);
+      const scope4x = Math.floor(Math.random() * 8) + (baseVal - 4);
+      const general = 100;
+      const fireBtn = Math.floor(Math.random() * 8) + 45;
+
+      const resultBox = document.getElementById('result-box');
+      const sensDetails = document.getElementById('sens-details');
+      
+      sensDetails.innerHTML = `
+        عام: ${general} | نقطة حمراء: ${redDot} | سكوب 2X: ${scope2x} | سكوب 4X: ${scope4x}<br>
+        <span style="color:var(--accent-gold);">مقاس زر الإطلاق الموصى به: ${fireBtn}% | الأسلوب: ${style}</span>
+      `;
+      resultBox.style.display = 'block';
+    }
+
+    window.onload = function() {
+      detectHardware();
+      const savedName = localStorage.getItem('hamada_player');
+      if(savedName) {
+        showUser(savedName);
+      }
+    };
+  </script>
+</body>
+</html>
