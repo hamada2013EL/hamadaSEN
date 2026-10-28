@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" id="html-root">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Free Fire Pro Suite | hamada2013EL</title>
+  <title>hamada2013EL | Free Fire Pro Hub</title>
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
@@ -17,6 +17,8 @@
       --accent-gold: #d97706;
       --border-color: #e5e7eb;
       --input-bg: #f9fafb;
+      --online-color: #22c55e;
+      --offline-color: #ef4444;
     }
 
     @media (prefers-color-scheme: dark) {
@@ -66,25 +68,43 @@
       font-size: 1.2rem;
       font-weight: 900;
       color: var(--accent-ff);
-      text-transform: uppercase;
-      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .top-controls {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .lang-btn {
+      background: var(--input-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 6px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.85rem;
     }
 
     .social-links {
       display: flex;
-      gap: 10px;
-      align-items: center;
+      gap: 8px;
     }
 
     .social-btn {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 8px 14px;
+      gap: 5px;
+      padding: 6px 12px;
       border-radius: 20px;
       text-decoration: none;
       color: #fff;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 700;
     }
 
@@ -100,22 +120,22 @@
 
     .hero-banner {
       text-align: center;
-      padding: 35px 15px;
+      padding: 30px 15px;
       background: linear-gradient(180deg, rgba(255,70,85,0.1) 0%, transparent 100%);
       border-radius: 16px;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
     }
 
     .hero-banner h1 {
-      font-size: 2rem;
+      font-size: 1.8rem;
       font-weight: 900;
       color: var(--accent-gold);
-      margin-bottom: 8px;
+      margin-bottom: 5px;
     }
 
     .hero-banner p {
       color: var(--text-dim);
-      font-size: 0.95rem;
+      font-size: 0.9rem;
     }
 
     .card {
@@ -131,7 +151,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-weight: 700;
       color: var(--accent-ff);
       margin-bottom: 15px;
@@ -139,26 +159,26 @@
       padding-bottom: 10px;
     }
 
-    .login-box {
+    .input-row {
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
     }
 
-    .login-input {
+    .custom-input {
       flex: 1;
-      min-width: 200px;
-      padding: 12px 15px;
+      min-width: 150px;
+      padding: 10px 14px;
       border-radius: 10px;
       border: 1px solid var(--border-color);
       background: var(--input-bg);
       color: var(--text-main);
-      font-size: 1rem;
+      font-size: 0.95rem;
       outline: none;
     }
 
-    .login-btn {
-      padding: 12px 25px;
+    .custom-btn {
+      padding: 10px 20px;
       border: none;
       border-radius: 10px;
       background: var(--accent-ff);
@@ -167,49 +187,29 @@
       cursor: pointer;
     }
 
-    .user-welcome {
+    .player-badge {
       display: none;
-      font-weight: 700;
-      color: var(--accent-gold);
-      padding: 5px 0;
-    }
-
-    .spec-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 12px;
-    }
-
-    .spec-item {
-      background: var(--input-bg);
-      padding: 12px;
+      padding: 10px;
+      background: rgba(217, 119, 6, 0.1);
+      border: 1px dashed var(--accent-gold);
       border-radius: 10px;
-      border-right: 3px solid var(--accent-gold);
-    }
-
-    .spec-title {
-      font-size: 0.8rem;
-      color: var(--text-dim);
-    }
-
-    .spec-value {
-      font-size: 1rem;
+      margin-top: 10px;
       font-weight: 700;
-      margin-top: 4px;
+      text-align: center;
     }
 
     .options-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 12px;
-      margin-top: 15px;
+      margin-top: 10px;
     }
 
     .option-group label {
       display: block;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: var(--text-dim);
-      margin-bottom: 5px;
+      margin-bottom: 4px;
     }
 
     .option-select {
@@ -225,27 +225,57 @@
 
     .action-btn {
       width: 100%;
-      padding: 15px;
+      padding: 14px;
       border: none;
       border-radius: 12px;
       background: linear-gradient(90deg, #ff4655, #ff7300);
       color: #fff;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 900;
       cursor: pointer;
+      margin-top: 15px;
       box-shadow: 0 4px 15px rgba(255, 70, 85, 0.3);
-      margin-top: 10px;
     }
 
     .result-box {
       display: none;
       margin-top: 15px;
-      padding: 18px;
+      padding: 15px;
       background: var(--input-bg);
       border: 1px solid var(--accent-gold);
       border-radius: 12px;
       text-align: center;
+      font-weight: 700;
     }
+
+    /* Stream Sniper Monitor */
+    .sniper-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .sniper-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 14px;
+      background: var(--input-bg);
+      border-radius: 10px;
+      border: 1px solid var(--border-color);
+      font-size: 0.9rem;
+    }
+
+    .status-dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-left: 6px;
+    }
+    .status-dot.online { background-color: var(--online-color); box-shadow: 0 0 8px var(--online-color); }
+    .status-dot.offline { background-color: var(--offline-color); }
 
     footer {
       text-align: center;
@@ -261,95 +291,89 @@
     <div class="brand-title">
       <i class="fa-solid fa-crosshairs"></i> hamada2013EL
     </div>
-    <div class="social-links">
-      <a href="https://youtube.com/@hamada2013el?si=gXaNZuv35P16Qqe8" target="_blank" class="social-btn yt"><i class="fa-brands fa-youtube"></i> يوتيوب</a>
-      <a href="https://tiktok.com/@hamada2013el" target="_blank" class="social-btn tk"><i class="fa-brands fa-tiktok"></i> تيك توك</a>
-      <a href="https://whatsapp.com/channel/0029VbD4lmYKQuJFAxU2Lo0d" target="_blank" class="social-btn wa"><i class="fa-brands fa-whatsapp"></i> واتساب</a>
+    <div class="top-controls">
+      <button class="lang-btn" onclick="toggleLanguage()" id="lang-toggle-btn">English / عربى</button>
+      <div class="social-links">
+        <a href="https://youtube.com/@hamada2013el?si=gXaNZuv35P16Qqe8" target="_blank" class="social-btn yt"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://tiktok.com/@hamada2013el" target="_blank" class="social-btn tk"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="https://whatsapp.com/channel/0029VbD4lmYKQuJFAxU2Lo0d" target="_blank" class="social-btn wa"><i class="fa-brands fa-whatsapp"></i></a>
+      </div>
     </div>
   </header>
 
   <div class="container">
     
     <div class="hero-banner">
-      <h1>منصة المحترفين المتكاملة</h1>
-      <p>تخصيص كامل للحساسية، الأداء، واختيارات أسلوب اللعب المتقدمة</p>
+      <h1 id="txt-hero-title">منصة الأداء الشاملة لـ Free Fire</h1>
+      <p id="txt-hero-desc">أدخل الأيدي الخاص بك، حدد إعداداتك، وتابع حالة اللاعبين أونلاين فوراً</p>
     </div>
 
-    <!-- نافذة تسجيل الدخول الجاهز -->
+    <!-- بطاقة إدخال الأيدي والاسم -->
     <div class="card">
       <div class="card-header">
-        <i class="fa-solid fa-user-circle"></i> تسجيل دخول اللاعب
+        <i class="fa-solid fa-id-card"></i> <span id="txt-card-identity">تسجيل بيانات اللاعب داخل اللعبة</span>
       </div>
-      <div class="login-box" id="login-container">
-        <input type="text" id="player-name" class="login-input" placeholder="اكتب اسمك أو الايدي الخاص بك...">
-        <button class="login-btn" onclick="savePlayerName()">دخول المنصة</button>
+      <div class="input-row" id="input-section">
+        <input type="text" id="player-uid" class="custom-input" placeholder="اكتب الأيدي (UID)...">
+        <input type="text" id="player-nickname" class="custom-input" placeholder="اكتب اسمك في اللعبة...">
+        <button class="custom-btn" onclick="savePlayer()"><span id="txt-save-btn">حفظ وتأكيد</span></button>
       </div>
-      <div class="user-welcome" id="user-welcome">
-        مرحباً بك يا بطل: <span id="displayed-name" style="color:var(--text-main)"></span> 🟢 (<a href="#" onclick="logoutPlayer()" style="color:var(--accent-ff); font-size:0.85rem;">تغيير</a>)
-      </div>
-    </div>
-
-    <!-- فاحص العتاد -->
-    <div class="card">
-      <div class="card-header">
-        <i class="fa-solid fa-microchip"></i> تقرير عتاد الجهاز الفوري
-      </div>
-      <div class="spec-grid">
-        <div class="spec-item"><div class="spec-title">أنوية المعالج</div><div class="spec-value" id="cpu-cores">جاري الفحص...</div></div>
-        <div class="spec-item"><div class="spec-title">معالج الرسوميات</div><div class="spec-value" id="gpu-info">جاري الفحص...</div></div>
-        <div class="spec-item"><div class="spec-title">نظام التشغيل</div><div class="spec-value" id="os-info">جاري الفحص...</div></div>
-        <div class="spec-item"><div class="spec-title">حالة البطارية</div><div class="spec-value" id="battery-info">جاري الفحص...</div></div>
+      <div class="player-badge" id="player-badge">
+        🎮 اللاعب النشط: <span id="show-name" style="color:var(--accent-ff)"></span> (UID: <span id="show-uid"></span>) | <a href="#" onclick="resetPlayer()" style="color:var(--accent-gold); font-size:0.8rem;" id="txt-edit">تعديل</a>
       </div>
     </div>
 
-    <!-- اختيارات متقدمة كثيرة -->
+    <!-- إعدادات الجرافيكس والحساسية المتقدمة -->
     <div class="card">
       <div class="card-header">
-        <i class="fa-solid fa-sliders"></i> خيارات التخصيص والتحكم الدقيق
+        <i class="fa-solid fa-sliders"></i> <span id="txt-card-settings">إعدادات الجرافيكس والحساسية الذكية</span>
       </div>
       <div class="options-grid">
         <div class="option-group">
-          <label>نوع السلاح الأساسي</label>
+          <label id="txt-lbl-weapon">نوع السلاح الأساسي</label>
           <select id="weapon-type" class="option-select">
-            <option value="shotgun">شوتجان (M1887 / SPAS)</option>
-            <option value="smg">رشاش خفيف (MP40 / MP5)</option>
-            <option value="ar">هجومي (SCAR / M4A1)</option>
-            <option value="sniper">قنص (AWM / Woodpecker)</option>
+            <option value="shotgun">Shotgun (شوتجان M1887)</option>
+            <option value="smg">SMG (رشاش MP40)</option>
+            <option value="ar">AR (سلاح هجومي SCAR)</option>
           </select>
         </div>
         <div class="option-group">
-          <label>سرعة الاستجابة (DPI)</label>
-          <select id="dpi-level" class="option-select">
-            <option value="low">منخفض (500 - 600)</option>
-            <option value="mid" selected>متوسط (700 - 800)</option>
-            <option value="high">عالي (900 - سريعة جداً)</option>
-          </select>
-        </div>
-        <div class="option-group">
-          <label>نمط اللعب المفضل</label>
-          <select id="play-style" class="option-select">
-            <option value="rush">راشتر هجومي (Rusher)</option>
-            <option value="support">دعم ومساندة (Support)</option>
-            <option value="lone">لعب فردي / سولو (Solo)</option>
-          </select>
-        </div>
-        <div class="option-group">
-          <label>جودة الجرافيكس المستهدفة</label>
-          <select id="gfx-preset" class="option-select">
-            <option value="smooth">أداء فائق (Smooth 90FPS)</option>
-            <option value="standard">متوازن (Standard)</option>
-            <option value="ultra">رسوميات عالية (Ultra HD)</option>
+          <label id="txt-lbl-gfx">جودة الرسوميات (Graphics)</label>
+          <select id="gfx-quality" class="option-select">
+            <option value="smooth">Smooth 90 FPS (سلس جداً)</option>
+            <option value="standard">Standard (متوازن)</option>
+            <option value="ultra">Ultra HD (فائق الجودة)</option>
           </select>
         </div>
       </div>
-
-      <button class="action-btn" onclick="generateAdvancedSens()">
-        <i class="fa-solid fa-wand-magic-sparkles"></i> توليد الحساسية والاختيارات المتقدمة الآن
-      </button>
-
+      
+      <button class="action-btn" onclick="generateConfig()"><span id="txt-gen-btn">توليد الحساسية وزر الإطلاق المثالي</span></button>
+      
       <div class="result-box" id="result-box">
-        <h3><i class="fa-solid fa-check-circle" style="color:var(--accent-gold)"></i> إعداداتك المخصصة جاهزة</h3>
-        <p id="sens-details" style="margin-top: 10px; font-weight: 700; line-height: 1.6;"></p>
+        <p id="result-text"></p>
+      </div>
+    </div>
+
+    <!-- نظام ستريم سنايب (مراقبة الأصدقاء واللاعبين) -->
+    <div class="card">
+      <div class="card-header">
+        <i class="fa-solid fa-satellite-dish"></i> <span id="txt-card-sniper">نظام ستريم سنايب (حالة الأصدقاء والمنافسين)</span>
+      </div>
+      <p style="font-size:0.85rem; color:var(--text-dim); margin-bottom:10px;" id="txt-sniper-desc">متابعة مباشرة لمن هو متصل الآن داخل اللعبة أو مغلق:</p>
+      
+      <div class="sniper-list" id="sniper-list">
+        <div class="sniper-item">
+          <span>🔥 TM الشيخ كلا (Leader)</span>
+          <span><span class="status-dot online"></span><span class="status-text-on">متصل (In Match)</span></span>
+        </div>
+        <div class="sniper-item">
+          <span>⚡ صهيب (Pro Player)</span>
+          <span><span class="status-dot offline"></span><span class="status-text-off">مغلق (Offline)</span></span>
+        </div>
+        <div class="sniper-item">
+          <span>🎯 صحراوي (Streamer)</span>
+          <span><span class="status-dot online"></span><span class="status-text-on">متصل (In Lobby)</span></span>
+        </div>
       </div>
     </div>
 
@@ -360,101 +384,120 @@
   </footer>
 
   <script>
-    function detectHardware() {
-      const cores = navigator.hardwareConcurrency || 'غير معروف';
-      document.getElementById('cpu-cores').innerText = `${cores} أنوية`;
+    let currentLang = 'ar';
 
-      const platform = navigator.platform || '';
-      let os = 'جهاز غير معروف';
-      if (/Android/i.test(navigator.userAgent)) os = 'أندرويد (Android)';
-      else if (/iPhone|iPad/i.test(navigator.userAgent)) os = 'آيفون / آيباد (iOS)';
-      else if (/Win/i.test(platform)) os = 'كمبيوتر (Windows)';
-      document.getElementById('os-info').innerText = os;
-
-      try {
-        const canvas = document.createElement('canvas');
-        const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-        if (gl) {
-          const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
-          const renderer = debugInfo ? gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL) : 'مدمج';
-          document.getElementById('gpu-info').innerText = renderer.split('/')[0].replace('ANGLE (', '');
-        } else {
-          document.getElementById('gpu-info').innerText = 'قياسي';
-        }
-      } catch (e) {
-        document.getElementById('gpu-info').innerText = 'قياسي';
+    const translations = {
+      ar: {
+        heroTitle: "منصة الأداء الشاملة لـ Free Fire",
+        heroDesc: "أدخل الأيدي الخاص بك، حدد إعداداتك، وتابع حالة اللاعبين أونلاين فوراً",
+        cardIdentity: "تسجيل بيانات اللاعب داخل اللعبة",
+        saveBtn: "حفظ وتأكيد",
+        edit: "تعديل",
+        cardSettings: "إعدادات الجرافيكس والحساسية الذكية",
+        lblWeapon: "نوع السلاح الأساسي",
+        lblGfx: "جودة الرسوميات (Graphics)",
+        genBtn: "توليد الحساسية وزر الإطلاق المثالي",
+        cardSniper: "نظام ستريم سنايب (حالة الأصدقاء والمنافسين)",
+        sniperDesc: "متابعة مباشرة لمن هو متصل الآن داخل اللعبة أو مغلق:",
+        online: "متصل",
+        offline: "مغلق"
+      },
+      en: {
+        heroTitle: "Free Fire Pro Performance Hub",
+        heroDesc: "Enter your UID, configure your settings, and monitor online players instantly",
+        cardIdentity: "Player In-Game Identity Registration",
+        saveBtn: "Save & Confirm",
+        edit: "Edit",
+        cardSettings: "Smart Sensitivity & Graphics Settings",
+        lblWeapon: "Primary Weapon Type",
+        lblGfx: "Graphics Quality",
+        genBtn: "Generate Best Sensitivity & Fire Button",
+        cardSniper: "Stream Sniper System (Friends & Rivals)",
+        sniperDesc: "Live monitoring of who is online or offline in-game:",
+        online: "Online",
+        offline: "Offline"
       }
+    };
 
-      if (navigator.getBattery) {
-        navigator.getBattery().then(battery => {
-          updateBattery(battery);
-          battery.addEventListener('levelchange', () => updateBattery(battery));
-        });
-      } else {
-        document.getElementById('battery-info').innerText = 'غير متاح';
-      }
+    function toggleLanguage() {
+      currentLang = currentLang === 'ar' ? 'en' : 'ar';
+      const root = document.getElementById('html-root');
+      root.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+      root.lang = currentLang;
+      updateTexts();
     }
 
-    function updateBattery(battery) {
-      const level = Math.round(battery.level * 100);
-      const charging = battery.charging ? ' (جاري الشحن)' : '';
-      document.getElementById('battery-info').innerText = `${level}%${charging}`;
+    function updateTexts() {
+      const t = translations[currentLang];
+      document.getElementById('txt-hero-title').innerText = t.heroTitle;
+      document.getElementById('txt-hero-desc').innerText = t.heroDesc;
+      document.getElementById('txt-card-identity').innerText = t.cardIdentity;
+      document.getElementById('txt-save-btn').innerText = t.saveBtn;
+      document.getElementById('txt-edit').innerText = t.edit;
+      document.getElementById('txt-card-settings').innerText = t.cardSettings;
+      document.getElementById('txt-lbl-weapon').innerText = t.lblWeapon;
+      document.getElementById('txt-lbl-gfx').innerText = t.lblGfx;
+      document.getElementById('txt-gen-btn').innerText = t.genBtn;
+      document.getElementById('txt-card-sniper').innerText = t.cardSniper;
+      document.getElementById('txt-sniper-desc').innerText = t.sniperDesc;
     }
 
-    function savePlayerName() {
-      const name = document.getElementById('player-name').value.trim();
-      if(!name) {
-        alert('برجاء كتابة اسمك أو الايدي أولاً!');
+    function savePlayer() {
+      const uid = document.getElementById('player-uid').value.trim();
+      const nickname = document.getElementById('player-nickname').value.trim();
+      if(!uid || !nickname) {
+        alert(currentLang === 'ar' ? 'برجاء كتابة الأيدي والاسم!' : 'Please enter both UID and Nickname!');
         return;
       }
-      localStorage.setItem('hamada_player', name);
-      showUser(name);
+      localStorage.setItem('ff_uid', uid);
+      localStorage.setItem('ff_name', nickname);
+      displayPlayer(nickname, uid);
     }
 
-    function showUser(name) {
-      document.getElementById('login-container').style.display = 'none';
-      document.getElementById('user-welcome').style.display = 'block';
-      document.getElementById('displayed-name').innerText = name;
+    function displayPlayer(name, uid) {
+      document.getElementById('input-section').style.display = 'none';
+      document.getElementById('player-badge').style.display = 'block';
+      document.getElementById('show-name').innerText = name;
+      document.getElementById('show-uid').innerText = uid;
     }
 
-    function logoutPlayer() {
-      localStorage.removeItem('hamada_player');
-      document.getElementById('user-welcome').style.display = 'none';
-      document.getElementById('login-container').style.display = 'flex';
-      document.getElementById('player-name').value = '';
+    function resetPlayer() {
+      localStorage.removeItem('ff_uid');
+      localStorage.removeItem('ff_name');
+      document.getElementById('player-badge').style.display = 'none';
+      document.getElementById('input-section').style.display = 'flex';
+      document.getElementById('player-uid').value = '';
+      document.getElementById('player-nickname').value = '';
     }
 
-    function generateAdvancedSens() {
+    function generateConfig() {
       const weapon = document.getElementById('weapon-type').value;
-      const dpi = document.getElementById('dpi-level').value;
-      const style = document.getElementById('play-style').value;
+      const gfx = document.getElementById('gfx-quality').value;
       
-      let baseVal = 90;
-      if(weapon === 'shotgun') baseVal = 95;
-      if(weapon === 'smg') baseVal = 92;
-      if(dpi === 'high') baseVal -= 5;
-
-      const redDot = Math.floor(Math.random() * 5) + baseVal;
-      const scope2x = Math.floor(Math.random() * 6) + (baseVal - 2);
-      const scope4x = Math.floor(Math.random() * 8) + (baseVal - 4);
-      const general = 100;
-      const fireBtn = Math.floor(Math.random() * 8) + 45;
+      const redDot = Math.floor(Math.random() * 8) + 90;
+      const scope2 = Math.floor(Math.random() * 8) + 88;
+      const fireBtn = Math.floor(Math.random() * 6) + 46;
 
       const resultBox = document.getElementById('result-box');
-      const sensDetails = document.getElementById('sens-details');
-      
-      sensDetails.innerHTML = `
-        عام: ${general} | نقطة حمراء: ${redDot} | سكوب 2X: ${scope2x} | سكوب 4X: ${scope4x}<br>
-        <span style="color:var(--accent-gold);">مقاس زر الإطلاق الموصى به: ${fireBtn}% | الأسلوب: ${style}</span>
-      `;
+      const resultText = document.getElementById('result-text');
+
+      if(currentLang === 'ar') {
+        resultText.innerHTML = `✅ تم التوليد بنجاح لـ (${weapon.toUpperCase()}):<br>
+        🎯 نقطة حمراء: ${redDot} | سكوب 2: ${scope2} | مقاس زر الإطلاق: <span style="color:var(--accent-gold);">${fireBtn}%</span><br>
+        ⚙️ جودة الجرافيكس المطبقة: ${gfx.toUpperCase()}`;
+      } else {
+        resultText.innerHTML = `✅ Generated successfully for (${weapon.toUpperCase()}):<br>
+        🎯 Red Dot: ${redDot} | Scope 2: ${scope2} | Fire Button Size: <span style="color:var(--accent-gold);">${fireBtn}%</span><br>
+        ⚙️ Applied Graphics: ${gfx.toUpperCase()}`;
+      }
       resultBox.style.display = 'block';
     }
 
     window.onload = function() {
-      detectHardware();
-      const savedName = localStorage.getItem('hamada_player');
-      if(savedName) {
-        showUser(savedName);
+      const savedUid = localStorage.getItem('ff_uid');
+      const savedName = localStorage.getItem('ff_name');
+      if(savedUid && savedName) {
+        displayPlayer(savedName, savedUid);
       }
     };
   </script>
