@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مولد حساسيات فري فاير الذكي | Free Fire Pro Suite</title>
+    <title>فاحص عتاد ومولد حساسيات فري فاير الذكي | Free Fire Pro Suite</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
@@ -80,7 +80,7 @@
             </div>
 
             <h2 id="gateTitle" class="text-2xl font-black mb-2 text-white">دخول الموقع المطلوب</h2>
-            <p id="gateSubtitle" class="text-gray-400 text-sm mb-6">اكتب رمز الدخول للوصول إلى نظام فحص عتاد الجهاز وحساسية فري فاير</p>
+            <p id="gateSubtitle" class="text-gray-400 text-sm mb-6">اكتب رمز الدخول للوصول إلى النظام الذكي وفحص العتاد</p>
 
             <div class="mb-4">
                 <input type="password" id="passcodeInput" maxlength="10" placeholder="أدخل الرمز هنا" 
@@ -133,10 +133,10 @@
             <div class="glass-panel ff-border rounded-2xl p-6 sm:p-10 relative overflow-hidden shadow-2xl">
                 <div class="absolute -left-12 -bottom-12 w-48 h-48 bg-ff-orange/15 rounded-full blur-3xl"></div>
                 <h2 id="heroTitle" class="text-3xl sm:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-ff-orange mb-3">
-                    التحليل التلقائي لمواصفات هاتفك وحساسية الهيدشوت
+                    الفحص الشامل لعتاد هاتفك وحساسية الهيدشوت
                 </h2>
                 <p id="heroDesc" class="text-gray-300 text-sm sm:text-base max-w-2xl mx-auto mb-6">
-                    يقوم هذا النظام بقراءة نوع هاتفك، الذاكرة العشوائية (RAM)، المعالج الرسومي (GPU)، ومعدل الفريمات (FPS) الحقيقي لجهازك لإنشاء أفضل إعدادات هيدشوت تلقائياً.
+                    يقوم هذا النظام بقراءة معلومات جهازك الفعلية (المعالج، كارت الشاشة، المتصفح والمنصة) لتوليد أفضل وأدق إعدادات لضمان ثبات الإيم.
                 </p>
 
                 <!-- Channels Links Section -->
@@ -164,15 +164,15 @@
             </div>
         </section>
 
-        <!-- Main Workspace (Hardware Inspector & Generator) -->
+        <!-- Main Workspace -->
         <main class="max-w-6xl mx-auto px-4 py-6 flex-1 w-full grid grid-cols-1 lg:grid-cols-12 gap-6">
             
-            <!-- Left Side: Live Hardware System Inspector -->
+            <!-- Left Side: Live Hardware Inspector -->
             <div class="lg:col-span-5 space-y-6">
                 <div class="glass-panel border border-gray-800 rounded-2xl p-5 sm:p-6 shadow-xl">
                     <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2 border-b border-gray-800 pb-3">
                         <i class="fa-solid fa-microchip text-ff-orange"></i>
-                        <span id="sectionHardwareTitle">تقرير مواصفات الجهاز الحقيقي (System Specs)</span>
+                        <span id="sectionHardwareTitle">تقرير مواصفات الجهاز (System Specs)</span>
                     </h3>
 
                     <!-- Specs List -->
@@ -182,7 +182,7 @@
                             <span id="specDeviceModel" class="font-bold text-ff-yellow">جاري الفحص...</span>
                         </div>
                         <div class="flex justify-between items-center p-3 bg-black/40 border border-gray-800 rounded-xl">
-                            <span id="lblSpecRAM" class="text-gray-400 font-medium">الذاكرة العشوائية (RAM):</span>
+                            <span id="lblSpecRAM" class="text-gray-400 font-medium">الذاكرة التقديرية (RAM):</span>
                             <span id="specRAM" class="font-bold text-white">جاري الفحص...</span>
                         </div>
                         <div class="flex justify-between items-center p-3 bg-black/40 border border-gray-800 rounded-xl">
@@ -194,7 +194,7 @@
                             <span id="specGPU" class="font-bold text-ff-orange truncate max-w-[180px]">جاري الفحص...</span>
                         </div>
                         <div class="flex justify-between items-center p-3 bg-black/40 border border-gray-800 rounded-xl">
-                            <span id="lblSpecFPS" class="text-gray-400 font-medium">معدل الفريمات المدعوم (FPS):</span>
+                            <span id="lblSpecFPS" class="text-gray-400 font-medium">معدل الفريمات (FPS):</span>
                             <span id="specFPS" class="font-bold text-green-400">جاري الفحص...</span>
                         </div>
                     </div>
@@ -223,7 +223,7 @@
                         <span id="tipHeader">نصيحة النظام الذكي:</span>
                     </h4>
                     <p id="tipBody" class="text-xs text-gray-300 leading-relaxed">
-                        تم ضبط قيم الـ DPI وحجم زر إطلاق النار وفقاً لقدرة شاشتك ومعالج رسوميات جهازك لضمان عدم حدوث تقطيع (Lag) أثناء الـ Drag Headshot.
+                        تم قراءة عتاد جهازك بنجاح ومعايرة إعدادات الـ DPI وحجم زر إطلاق النار خصيصاً لتحقيق أقصى ثبات للهيدشوت.
                     </p>
                 </div>
             </div>
@@ -365,7 +365,7 @@
         <span id="toastMsg">تم النسخ بنجاح!</span>
     </div>
 
-    <!-- JavaScript Application Logic with Hardware Detection API -->
+    <!-- JavaScript Application Logic -->
     <script>
         function openSocialLink(url) {
             window.open(url, '_blank', 'noopener,noreferrer');
@@ -374,28 +374,28 @@
         const translations = {
             ar: {
                 gateTitle: "دخول الموقع المطلوب",
-                gateSubtitle: "اكتب رمز الدخول للوصول إلى فاحص عتاد وحساسية فري فاير",
+                gateSubtitle: "اكتب رمز الدخول للوصول إلى النظام الذكي وفحص العتاد",
                 passcodePlaceholder: "أدخل الرمز هنا",
                 gateBtn: "فتح الموقع",
                 gateHint: "الرمز الافتراضي للتجربة هو: 1234",
                 appHeaderTitle: "فاحص عتاد ومولد حساسيات فري فاير",
                 appHeaderSub: "التحليل الذكي للنظام والعتاد",
-                heroTitle: "التحليل التلقائي لمواصفات هاتفك وحساسية الهيدشوت",
-                heroDesc: "يقوم هذا النظام بقراءة نوع هاتفك، الذاكرة العشوائية (RAM)، المعالج الرسومي (GPU)، ومعدل الفريمات (FPS) الحقيقي لجهازك لإنشاء أفضل إعدادات هيدشوت تلقائياً.",
+                heroTitle: "الفحص الشامل لعتاد هاتفك وحساسية الهيدشوت",
+                heroDesc: "يقوم هذا النظام بقراءة معلومات جهازك الفعلية (المعالج، كارت الشاشة، المتصفح والمنصة) لتوليد أفضل وأدق إعدادات لضمان ثبات الإيم.",
                 contactLabel: "للتواصل معنا ومتابعة الجديد اضغط على الأزرار:",
                 btnYoutube: "قناة اليوتيوب",
                 btnTiktok: "قناة التيك توك",
                 btnWhatsapp: "قناة الواتساب",
-                sectionHardwareTitle: "تقرير مواصفات الجهاز الحقيقي (System Specs)",
+                sectionHardwareTitle: "تقرير مواصفات الجهاز (System Specs)",
                 lblSpecModel: "نوع الجهاز / النظام:",
-                lblSpecRAM: "الذاكرة العشوائية (RAM):",
+                lblSpecRAM: "الذاكرة التقديرية (RAM):",
                 lblSpecCPU: "أنوية المعالج (CPU Cores):",
                 lblSpecGPU: "معالج الرسوميات (GPU):",
-                lblSpecFPS: "معدل الفريمات المدعوم (FPS):",
+                lblSpecFPS: "معدل الفريمات (FPS):",
                 lblPlayStyle: "أسلوب اللعب المفضل:",
                 btnReScan: "إعادة فحص عتاد النظام وحساب الحساسية",
                 tipHeader: "نصيحة النظام الذكي:",
-                tipBody: "تم ضبط قيم الـ DPI وحجم زر إطلاق النار وفقاً لقدرة شاشتك ومعالج رسوميات جهازك لضمان عدم حدوث تقطيع (Lag) أثناء الـ Drag Headshot.",
+                tipBody: "تم قراءة عتاد جهازك بنجاح ومعايرة إعدادات الـ DPI وحجم زر إطلاق النار خصيصاً لتحقيق أقصى ثبات للهيدشوت.",
                 sectionSensiTitle: "الحساسية المقترحة خصيصاً لجهازك",
                 btnCopy: "نسخ الكل",
                 lblSensiGeneral: "عام (General)",
@@ -424,14 +424,14 @@
                 appHeaderTitle: "فاحص عتاد ومولد حساسيات فري فاير",
                 appHeaderSub: "الذكاء الاصطناعي لفحص الموبايل",
                 heroTitle: "فحص مواصفات تليفونك أوتوماتيك وحساب الهيدشوت",
-                heroDesc: "الموقع بيقرا نوع تليفونك، الرامات، كارت الشاشة (GPU)، والفريمات (FPS) بتاعتك الحقيقية وبيطلعلك أحسن إعدادات تفيدك في الجيم.",
+                heroDesc: "الموقع بيقرا نوع تليفونك، الرامات، كارت الشاشة (GPU)، والفريمات بتاعتك الحقيقية وبيطلعلك أحسن إعدادات تفيدك في الجيم.",
                 contactLabel: "للتواصل معانا ومتابعة كل جديد دوس على الأزرار دي:",
                 btnYoutube: "قناة اليوتيوب",
                 btnTiktok: "قناة التيك توك",
                 btnWhatsapp: "قناة الواتساب",
-                sectionHardwareTitle: "تقرير إمكانيات جهازك الحقيقي",
+                sectionHardwareTitle: "تقرير إمكانيات جهازك",
                 lblSpecModel: "نوع الجهاز أو المتصفح:",
-                lblSpecRAM: "الـ RAM (الذاكرة العشوائية):",
+                lblSpecRAM: "الـ RAM التقديرية:",
                 lblSpecCPU: "أنوية المعالج (CPU):",
                 lblSpecGPU: "كارت الشاشة (GPU):",
                 lblSpecFPS: "الفريمات المتوقعة (FPS):",
@@ -581,19 +581,19 @@
             runHardwareAnalysis();
         }
 
-        // Automatic Hardware Inspector (RAM, CPU Cores, GPU, FPS, Device type)
+        // قراءة دقيقة لبيانات النظام والعتاد الحقيقي
         function runHardwareAnalysis() {
-            // 1. CPU Cores via Navigator API
+            // 1. عدد أنوية المعالج
             const cpuCores = navigator.hardwareConcurrency || 4;
 
-            // 2. RAM estimation via navigator.deviceMemory (Supported in Chrome/Edge Android)
+            // 2. الذاكرة العشوائية التقديرية (RAM)
             let estimatedRAM = navigator.deviceMemory ? `${navigator.deviceMemory} GB` : (cpuCores >= 8 ? '6GB - 8GB' : '4GB');
 
-            // 3. Platform & Device Detection
+            // 3. نوع الجهاز ونظام التشغيل بدقة
             const ua = navigator.userAgent;
-            let deviceName = "Android / Mobile Device";
+            let deviceName = "Android / Mobile";
             if (/iPhone|iPad|iPod/i.test(ua)) {
-                deviceName = "Apple iOS (iPhone/iPad)";
+                deviceName = "Apple iOS Device";
             } else if (/Windows/i.test(ua)) {
                 deviceName = "Windows PC (Emulator)";
             } else if (/Mac/i.test(ua)) {
@@ -602,8 +602,8 @@
                 deviceName = "Android Phone";
             }
 
-            // 4. GPU Renderer Detection via WebGL Context
-            let gpuInfo = "Adreno / Mali Graphics";
+            // 4. معالج الرسوميات (GPU Renderer) عبر WebGL
+            let gpuInfo = "Adreno / Mali GPU";
             try {
                 const canvas = document.createElement('canvas');
                 const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
@@ -611,7 +611,6 @@
                     const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
                     if (debugInfo) {
                         gpuInfo = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
-                        // Clean unneeded strings
                         gpuInfo = gpuInfo.replace(/ANGLE \(/g, '').replace(/\)/g, '');
                     }
                 }
@@ -619,15 +618,15 @@
                 gpuInfo = "Integrated Mobile GPU";
             }
 
-            // 5. FPS Determination based on hardware performance score
-            let performanceTier = 'medium'; // weak, medium, strong
+            // 5. تقييم أداء الجهاز ومعدل الفريمات الحقيقي (FPS)
+            let performanceTier = 'medium';
             if (cpuCores <= 4 || (navigator.deviceMemory && navigator.deviceMemory <= 3)) {
                 performanceTier = 'weak';
             } else if (cpuCores >= 8 || (navigator.deviceMemory && navigator.deviceMemory >= 8)) {
                 performanceTier = 'strong';
             }
 
-            let fpsText = "60 FPS (Standard)";
+            let fpsText = "60 FPS";
             if (performanceTier === 'weak') {
                 fpsText = currentLang === 'ar' ? '60 إطار (مستقر)' : (currentLang === 'arz' ? '60 فريم (عادي)' : '60 FPS (Stable)');
             } else if (performanceTier === 'medium') {
@@ -636,14 +635,14 @@
                 fpsText = currentLang === 'ar' ? '120 إطار أو أعلى (فائق)' : (currentLang === 'arz' ? '120 فريم أو أكتر (فائق)' : '120+ FPS (Ultra Max)');
             }
 
-            // Render specs to HTML UI
+            // عرض النتائج في الواجهة
             document.getElementById('specDeviceModel').innerText = deviceName;
             document.getElementById('specRAM').innerText = estimatedRAM;
             document.getElementById('specCPU').innerText = `${cpuCores} Cores`;
             document.getElementById('specGPU').innerText = gpuInfo;
             document.getElementById('specFPS').innerText = fpsText;
 
-            // Generate Sensitivities and Graphics based on detected performance tier
+            // توليد الحساسية والجرافيكس المناسبة بناءً على الأداء
             generateCalculatedSettings(performanceTier);
         }
 
