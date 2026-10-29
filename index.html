@@ -80,11 +80,11 @@
             </div>
 
             <h2 id="gateTitle" class="text-2xl font-black mb-2 text-white">دخول الموقع المطلوب</h2>
-            <p id="gateSubtitle" class="text-gray-400 text-sm mb-6">اكتب رمز الدخول للوصول إلى النظام الذكي وفحص العتاد</p>
+            <p id="gateSubtitle" class="text-gray-400 text-sm mb-6">اكتب رمز الدخول الخاص (hamada-sen) للوصول إلى النظام الذكي</p>
 
             <div class="mb-4">
-                <input type="password" id="passcodeInput" maxlength="10" placeholder="أدخل الرمز هنا" 
-                       class="w-full text-center tracking-widest text-2xl font-mono py-3 px-4 bg-black/50 border border-gray-700 rounded-xl text-white focus:outline-none focus:border-ff-orange transition">
+                <input type="text" id="passcodeInput" placeholder="أدخل الرمز هنا (hamada-sen)" 
+                       class="w-full text-center tracking-wider text-xl font-mono py-3 px-4 bg-black/50 border border-gray-700 rounded-xl text-white focus:outline-none focus:border-ff-orange transition">
             </div>
 
             <button onclick="unlockSite()" class="w-full ff-btn py-3 rounded-xl font-bold text-lg text-white mb-4">
@@ -92,7 +92,7 @@
             </button>
 
             <div class="p-3 bg-ff-orange/10 border border-ff-orange/30 rounded-lg text-xs text-ff-yellow">
-                <i class="fa-solid fa-lightbulb ml-1"></i> <span id="gateHint">الرمز الافتراضي للتجربة هو: <strong>1234</strong></span>
+                <i class="fa-solid fa-lightbulb ml-1"></i> <span id="gateHint">الرمز السري الجديد هو: <strong>hamada-sen</strong></span>
             </div>
         </div>
     </div>
@@ -112,7 +112,7 @@
                     <div>
                         <h1 class="font-black text-lg sm:text-xl text-white tracking-wide flex items-center gap-2">
                             <span id="appHeaderTitle">فاحص عتاد ومولد حساسيات فري فاير</span>
-                            <span class="text-xs px-2 py-0.5 bg-ff-orange/20 text-ff-orange border border-ff-orange/40 rounded-full">PRO</span>
+                            <span class="text-xs px-2 py-0.5 bg-ff-orange/20 text-ff-orange border border-ff-orange/40 rounded-full">VIP</span>
                         </h1>
                         <p class="text-xs text-gray-400" id="appHeaderSub">التحليل الذكي للنظام والعتاد</p>
                     </div>
@@ -374,10 +374,10 @@
         const translations = {
             ar: {
                 gateTitle: "دخول الموقع المطلوب",
-                gateSubtitle: "اكتب رمز الدخول للوصول إلى النظام الذكي وفحص العتاد",
-                passcodePlaceholder: "أدخل الرمز هنا",
+                gateSubtitle: "اكتب رمز الدخول الخاص (hamada-sen) للوصول إلى النظام الذكي",
+                passcodePlaceholder: "أدخل الرمز هنا (hamada-sen)",
                 gateBtn: "فتح الموقع",
-                gateHint: "الرمز الافتراضي للتجربة هو: 1234",
+                gateHint: "الرمز السري الجديد هو: <strong>hamada-sen</strong>",
                 appHeaderTitle: "فاحص عتاد ومولد حساسيات فري فاير",
                 appHeaderSub: "التحليل الذكي للنظام والعتاد",
                 heroTitle: "الفحص الشامل لعتاد هاتفك وحساسية الهيدشوت",
@@ -413,14 +413,14 @@
                 lblGfxRes: "دقة العرض",
                 footerCopy: "جميع الحقوق محفوظة © 2026 | تطوير بواسطة hamada2013EL",
                 toastSuccess: "تم نسخ جميع الحساسيات بنجاح!",
-                toastPassError: "رمز الدخول غير صحيح! حاول مرة أخرى."
+                toastPassError: "رمز الدخول (hamada-sen) غير صحيح! حاول مرة أخرى."
             },
             arz: {
                 gateTitle: "ادخل الباسورد عشان تخش الموقع",
-                gateSubtitle: "اكتب الكود وافتح فاحص الإمكانيات وحساسية فري فاير",
+                gateSubtitle: "اكتب الرمز السري (hamada-sen) عشان تدخل",
                 passcodePlaceholder: "اكتب الباسورد هنا",
                 gateBtn: "افتح الموقع يلا",
-                gateHint: "الباسورد للتجربة هو: 1234",
+                gateHint: "الباسورد السري الجديد هو: <strong>hamada-sen</strong>",
                 appHeaderTitle: "فاحص عتاد ومولد حساسيات فري فاير",
                 appHeaderSub: "الذكاء الاصطناعي لفحص الموبايل",
                 heroTitle: "فحص مواصفات تليفونك أوتوماتيك وحساب الهيدشوت",
@@ -456,14 +456,14 @@
                 lblGfxRes: "دقة الشاشة",
                 footerCopy: "جميع الحقوق محفوظة © 2026 | تصميم hamada2013EL",
                 toastSuccess: "تم نسخ الحساسيات يا بطل!",
-                toastPassError: "الباسورد غلط! جرب 1234"
+                toastPassError: "الباسورد غلط! اكتب hamada-sen صح"
             },
             en: {
                 gateTitle: "Access Passcode Required",
-                gateSubtitle: "Enter passcode to access Hardware Inspector & Sensi Generator",
-                passcodePlaceholder: "Enter Code Here",
+                gateSubtitle: "Enter the secret passcode (hamada-sen) to unlock",
+                passcodePlaceholder: "Enter Passcode (hamada-sen)",
                 gateBtn: "Unlock Website",
-                gateHint: "Default passcode for demo: 1234",
+                gateHint: "New secret passcode: <strong>hamada-sen</strong>",
                 appHeaderTitle: "Free Fire Hardware & Sensi Inspector",
                 appHeaderSub: "Smart System Analyzer",
                 heroTitle: "Automatic Hardware Inspection & Headshot Sensi",
@@ -499,15 +499,16 @@
                 lblGfxRes: "Resolution",
                 footerCopy: "All Rights Reserved © 2026 | Developed by hamada2013EL",
                 toastSuccess: "All sensitivities copied to clipboard!",
-                toastPassError: "Incorrect Passcode! Try 1234"
+                toastPassError: "Incorrect Passcode! Use hamada-sen"
             }
         };
 
         let currentLang = 'ar';
 
         function unlockSite() {
-            const passcode = document.getElementById('passcodeInput').value;
-            if (passcode === '1234') {
+            const passcode = document.getElementById('passcodeInput').value.trim();
+            // الكود السري الجديد الذي طلبته
+            if (passcode === 'hamada-sen') {
                 document.getElementById('securityGate').classList.add('hidden');
                 document.getElementById('mainContent').classList.remove('hidden');
                 runHardwareAnalysis();
@@ -581,15 +582,11 @@
             runHardwareAnalysis();
         }
 
-        // قراءة دقيقة لبيانات النظام والعتاد الحقيقي
+        // قراءة بيانات النظام والعتاد الحقيقي
         function runHardwareAnalysis() {
-            // 1. عدد أنوية المعالج
             const cpuCores = navigator.hardwareConcurrency || 4;
-
-            // 2. الذاكرة العشوائية التقديرية (RAM)
             let estimatedRAM = navigator.deviceMemory ? `${navigator.deviceMemory} GB` : (cpuCores >= 8 ? '6GB - 8GB' : '4GB');
 
-            // 3. نوع الجهاز ونظام التشغيل بدقة
             const ua = navigator.userAgent;
             let deviceName = "Android / Mobile";
             if (/iPhone|iPad|iPod/i.test(ua)) {
@@ -602,7 +599,6 @@
                 deviceName = "Android Phone";
             }
 
-            // 4. معالج الرسوميات (GPU Renderer) عبر WebGL
             let gpuInfo = "Adreno / Mali GPU";
             try {
                 const canvas = document.createElement('canvas');
@@ -618,7 +614,6 @@
                 gpuInfo = "Integrated Mobile GPU";
             }
 
-            // 5. تقييم أداء الجهاز ومعدل الفريمات الحقيقي (FPS)
             let performanceTier = 'medium';
             if (cpuCores <= 4 || (navigator.deviceMemory && navigator.deviceMemory <= 3)) {
                 performanceTier = 'weak';
@@ -635,14 +630,12 @@
                 fpsText = currentLang === 'ar' ? '120 إطار أو أعلى (فائق)' : (currentLang === 'arz' ? '120 فريم أو أكتر (فائق)' : '120+ FPS (Ultra Max)');
             }
 
-            // عرض النتائج في الواجهة
             document.getElementById('specDeviceModel').innerText = deviceName;
             document.getElementById('specRAM').innerText = estimatedRAM;
             document.getElementById('specCPU').innerText = `${cpuCores} Cores`;
             document.getElementById('specGPU').innerText = gpuInfo;
             document.getElementById('specFPS').innerText = fpsText;
 
-            // توليد الحساسية والجرافيكس المناسبة بناءً على الأداء
             generateCalculatedSettings(performanceTier);
         }
 
