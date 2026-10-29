@@ -911,3 +911,702 @@
   </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="html-root">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>hamada2013EL | Free Fire Pro Suite & Activation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --bg-color: #0b0e14;
+      --card-bg: #151a23;
+      --text-main: #ffffff;
+      --text-dim: #9aa0a6;
+      --accent-ff: #ff4655;
+      --accent-gold: #ffb800;
+      --border-color: rgba(255, 255, 255, 0.08);
+      --input-bg: rgba(0, 0, 0, 0.4);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Tajawal', sans-serif;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      min-height: 100vh;
+      padding-bottom: 60px;
+    }
+
+    /* شاشة قفل الكود (تظهر أولاً) */
+    #activation-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(11, 14, 20, 0.98);
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .activation-card {
+      background: var(--card-bg);
+      border: 2px solid var(--accent-ff);
+      border-radius: 20px;
+      padding: 30px;
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+      box-shadow: 0 10px 40px rgba(255, 70, 85, 0.3);
+    }
+
+    .activation-card h2 {
+      color: var(--accent-gold);
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .activation-card p {
+      color: var(--text-dim);
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+
+    .activation-input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border-color);
+      background: var(--input-bg);
+      color: var(--text-main);
+      font-size: 1rem;
+      text-align: center;
+      margin-bottom: 15px;
+      outline: none;
+      letter-spacing: 2px;
+      font-weight: 700;
+    }
+
+    .activation-btn {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(90deg, #ff4655, #ff7300);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(255, 70, 85, 0.4);
+    }
+
+    .error-msg {
+      color: var(--accent-ff);
+      font-size: 0.85rem;
+      margin-top: 10px;
+      display: none;
+    }
+
+    /* محتوى الموقع الأساسي (مخفي حتى يتم إدخال الكود) */
+    #main-app-content {
+      display: none;
+    }
+
+    .top-bar {
+      background: rgba(21, 26, 35, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 70, 85, 0.2);
+      padding: 12px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .brand-title {
+      font-size: 1.2rem;
+      font-weight: 900;
+      color: var(--accent-ff);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .top-controls {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .lang-select {
+      background: var(--input-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 6px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.85rem;
+      outline: none;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 8px;
+    }
+
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 12px;
+      border-radius: 20px;
+      text-decoration: none;
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .social-btn.yt { background-color: #ff0000; }
+    .social-btn.tk { background: linear-gradient(45deg, #ff0050, #00f2fe); }
+    .social-btn.wa { background-color: #25d366; }
+
+    .container {
+      max-width: 1000px;
+      margin: 20px auto;
+      padding: 0 15px;
+    }
+
+    .hero-banner {
+      text-align: center;
+      padding: 35px 15px;
+      background: linear-gradient(180deg, rgba(255,70,85,0.15) 0%, transparent 100%);
+      border-radius: 16px;
+      margin-bottom: 20px;
+    }
+
+    .hero-banner h1 {
+      font-size: 1.9rem;
+      font-weight: 900;
+      color: var(--accent-gold);
+      margin-bottom: 8px;
+    }
+
+    .hero-banner p {
+      color: var(--text-dim);
+      font-size: 0.95rem;
+    }
+
+    .device-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .device-tab-btn {
+      padding: 10px 25px;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      background: var(--card-bg);
+      color: var(--text-main);
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.95rem;
+    }
+
+    .device-tab-btn.active {
+      background: var(--accent-ff);
+      color: #fff;
+      border-color: var(--accent-ff);
+      box-shadow: 0 4px 15px rgba(255, 70, 85, 0.4);
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent-ff);
+      margin-bottom: 15px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 10px;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .custom-input {
+      flex: 1;
+      min-width: 150px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border-color);
+      background: var(--input-bg);
+      color: var(--text-main);
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    .custom-btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      background: var(--accent-ff);
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .player-badge {
+      display: none;
+      padding: 10px;
+      background: rgba(255, 184, 0, 0.1);
+      border: 1px dashed var(--accent-gold);
+      border-radius: 10px;
+      margin-top: 10px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .spec-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-bottom: 15px;
+    }
+
+    .spec-item {
+      background: var(--input-bg);
+      padding: 12px;
+      border-radius: 10px;
+      border-right: 3px solid var(--accent-gold);
+    }
+
+    .spec-title {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+
+    .spec-value {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-top: 4px;
+      color: var(--accent-gold);
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    .option-group label {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      margin-bottom: 5px;
+    }
+
+    .option-select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid var(--border-color);
+      background: var(--input-bg);
+      color: var(--text-main);
+      font-weight: 700;
+      outline: none;
+    }
+
+    .action-btn {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(90deg, #ff4655, #ff7300);
+      color: #fff;
+      font-size: 1.05rem;
+      font-weight: 900;
+      cursor: pointer;
+      margin-top: 15px;
+      box-shadow: 0 4px 15px rgba(255, 70, 85, 0.4);
+    }
+
+    .result-box {
+      display: none;
+      margin-top: 15px;
+      padding: 15px;
+      background: var(--input-bg);
+      border: 1px solid var(--accent-gold);
+      border-radius: 12px;
+      text-align: center;
+      font-weight: 700;
+      line-height: 1.6;
+    }
+
+    /* الأيقونة العائمة المتحركة */
+    .floating-bubble {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(45deg, #ff4655, #ff7300);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(255, 70, 85, 0.6);
+      z-index: 999;
+      animation: bouncePulse 2s infinite;
+    }
+
+    @keyframes bouncePulse {
+      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 70, 85, 0.7); }
+      70% { transform: scale(1.08); box-shadow: 0 0 0 15px rgba(255, 70, 85, 0); }
+      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 70, 85, 0); }
+    }
+
+    .bubble-menu {
+      position: fixed;
+      bottom: 100px;
+      right: 30px;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      width: 240px;
+      padding: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      display: none;
+      z-index: 998;
+    }
+
+    .bubble-menu h4 {
+      font-size: 0.95rem;
+      color: var(--accent-gold);
+      margin-bottom: 10px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 6px;
+    }
+
+    .bubble-menu a {
+      display: block;
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 0.85rem;
+      padding: 6px 0;
+      font-weight: 700;
+    }
+
+    .bubble-menu a:hover { color: var(--accent-ff); }
+
+    .mode-section { display: none; }
+    .mode-section.active-mode { display: block; }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- شاشة قفل التفعيل (تظهر إجباري أول ما يفتح الموقع) -->
+  <div id="activation-screen">
+    <div class="activation-card">
+      <h2><i class="fa-solid fa-lock"></i> تفعيل البرنامج (VIP)</h2>
+      <p>أدخل كود التفعيل السري المخصص لحسابك لاستخدام المنصة:</p>
+      <input type="text" id="activation-code-input" class="activation-input" placeholder="HAMADA-XXXX">
+      <button class="activation-btn" onclick="checkActivationCode()">تحقق وتفعيل</button>
+      <div id="error-msg" class="error-msg">⚠️ الكود غير صحيح! تواصل معنا عبر واتساب للحصول على كودك.</div>
+      <div style="margin-top: 15px; font-size: 0.8rem; color: var(--text-dim);">
+        للحصول على كود الاشتراك: <a href="https://whatsapp.com/channel/0029VbD4lmYKQuJFAxU2Lo0d" target="_blank" style="color: var(--accent-gold);">تواصل عبر الواتساب</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- محتوى الموقع الأساسي (يفتح بعد إدخال الكود الصحيح) -->
+  <div id="main-app-content">
+
+    <!-- الأيقونة العائمة المتحركة -->
+    <div class="floating-bubble" onclick="toggleBubbleMenu()" title="HAMADA PRO QUICK MENU">
+      <i class="fa-solid fa-crosshairs"></i>
+    </div>
+
+    <div class="bubble-menu" id="bubble-menu">
+      <h4>⚡ إعدادات سريعة (Hamada HUD)</h4>
+      <a href="https://whatsapp.com/channel/0029VbD4lmYKQuJFAxU2Lo0d" target="_blank"><i class="fa-brands fa-whatsapp"></i> قناة الواتساب</a>
+      <a href="https://youtube.com/@hamada2013el?si=gXaNZuv35P16Qqe8" target="_blank"><i class="fa-brands fa-youtube"></i> قناة اليوتيوب</a>
+      <a href="#" onclick="lockAppAgain()"><i class="fa-solid fa-lock"></i> قفل التطبيق من جديد</a>
+    </div>
+
+    <header class="top-bar">
+      <div class="brand-title">
+        <i class="fa-solid fa-shield-halved"></i> hamada2013EL
+      </div>
+      <div class="top-controls">
+        <select id="lang-selector" class="lang-select" onchange="changeLanguage(this.value)">
+          <option value="ar">العربية (Arabic)</option>
+          <option value="en">English (إنجليزي)</option>
+        </select>
+        <div class="social-links">
+          <a href="https://youtube.com/@hamada2013el?si=gXaNZuv35P16Qqe8" target="_blank" class="social-btn yt"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://tiktok.com/@hamada2013el" target="_blank" class="social-btn tk"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="https://whatsapp.com/channel/0029VbD4lmYKQuJFAxU2Lo0d" target="_blank" class="social-btn wa"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+      
+      <div class="hero-banner">
+        <h1>منصة المحترفين لفري فاير والعتاد الذكي</h1>
+        <p>تم تفعيل المنصة بنجاح - استمتع بأقوى إعدادات الحساسية والجرافيكس</p>
+      </div>
+
+      <div class="device-tabs">
+        <button class="device-tab-btn active" id="btn-mobile" onclick="switchDeviceMode('mobile')">
+          <i class="fa-solid fa-mobile-screen-button"></i> وضع الهاتف
+        </button>
+        <button class="device-tab-btn" id="btn-pc" onclick="switchDeviceMode('pc')">
+          <i class="fa-solid fa-desktop"></i> وضع الكمبيوتر
+        </button>
+      </div>
+
+      <!-- تسجيل الأيدي والاسم -->
+      <div class="card">
+        <div class="card-header">
+          <i class="fa-solid fa-id-card"></i> تسجيل حساب اللاعب (UID)
+        </div>
+        <div class="input-row" id="input-section">
+          <input type="text" id="player-uid" class="custom-input" placeholder="اكتب الأيدي (UID)...">
+          <input type="text" id="player-nickname" class="custom-input" placeholder="اكتب اسمك في اللعبة...">
+          <button class="custom-btn" onclick="savePlayer()">دخول الحساب</button>
+        </div>
+        <div class="player-badge" id="player-badge">
+          🎮 مرحباً بك يا بطل: <span id="show-name" style="color:var(--accent-ff)"></span> (UID: <span id="show-uid"></span>) | <a href="#" onclick="resetPlayer()" style="color:var(--accent-gold); font-size:0.8rem;">تعديل</a>
+        </div>
+      </div>
+
+      <!-- الهاتف -->
+      <div id="mode-mobile" class="mode-section active-mode">
+        <div class="card">
+          <div class="card-header"><i class="fa-solid fa-microchip"></i> تحليل عتاد الهاتف الفوري</div>
+          <div class="spec-grid">
+            <div class="spec-item"><div class="spec-title">أنوية المعالج</div><div class="spec-value" id="mob-cpu-val">جاري الفحص...</div></div>
+            <div class="spec-item"><div class="spec-title">معالج الرسوميات (GPU)</div><div class="spec-value" id="mob-gpu-val">جاري الفحص...</div></div>
+            <div class="spec-item"><div class="spec-title">نظام التشغيل</div><div class="spec-value" id="mob-os-val">جاري الفحص...</div></div>
+            <div class="spec-item"><div class="spec-title">البطارية والطاقة</div><div class="spec-value" id="mob-batt-val">جاري الفحص...</div></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><i class="fa-solid fa-wand-magic-sparkles"></i> مولد الحساسية المخصص</div>
+          <div class="options-grid">
+            <div class="option-group">
+              <label>نوع السلاح</label>
+              <select id="mob-weapon" class="option-select">
+                <option value="shotgun">Shotgun (شوتجان M1887)</option>
+                <option value="smg">SMG (رشاش MP40)</option>
+              </select>
+            </div>
+          </div>
+          <button class="action-btn" onclick="generateMobileConfig()">توليد الإعدادات الدقيقة</button>
+          <div class="result-box" id="mob-result-box"></div>
+        </div>
+      </div>
+
+      <!-- الكمبيوتر -->
+      <div id="mode-pc" class="mode-section">
+        <div class="card">
+          <div class="card-header"><i class="fa-solid fa-computer"></i> تحليل عتاد البيسي والمحاكي</div>
+          <div class="spec-grid">
+            <div class="spec-item"><div class="spec-title">المعالج</div><div class="spec-value" id="pc-cpu-val">جاري الفحص...</div></div>
+            <div class="spec-item"><div class="spec-title">كارت الشاشة</div><div class="spec-value" id="pc-gpu-val">جاري الفحص...</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <footer>
+      جميع الحقوق محفوظة © 2026 لقناة <strong>hamada2013EL</strong>
+    </footer>
+
+  </div>
+
+  <script>
+    // 🔑 كود التفعيل الافتراضي (يمكنك تغليفه أو تغييره لأي كلمة سر تريدها)
+    const CORRECT_ACTIVATION_CODE = "HAMADA-2026-VIP";
+
+    function checkActivationCode() {
+      const inputCode = document.getElementById('activation-code-input').value.trim();
+      const errorMsg = document.getElementById('error-msg');
+
+      if (inputCode === CORRECT_ACTIVATION_CODE) {
+        // حفظ التفعيل في المتصفح لكي لا يطلبه مرة أخرى عند التحديث
+        localStorage.setItem('app_activated', 'true');
+        document.getElementById('activation-screen').style.display = 'none';
+        document.getElementById('main-app-content').style.display = 'block';
+        readHardwareSpecs();
+      } else {
+        errorMsg.style.display = 'block';
+      }
+    }
+
+    function lockAppAgain() {
+      localStorage.removeItem('app_activated');
+      location.reload();
+    }
+
+    // التحقق تلقائياً إذا كان الجهاز مفعل مسبقاً
+    window.onload = function() {
+      const isActivated = localStorage.getItem('app_activated');
+      if (isActivated === 'true') {
+        document.getElementById('activation-screen').style.display = 'none';
+        document.getElementById('main-app-content').style.display = 'block';
+        readHardwareSpecs();
+      }
+
+      const savedUid = localStorage.getItem('ff_uid');
+      const savedName = localStorage.getItem('ff_name');
+      if(savedUid && savedName) {
+        displayPlayer(savedName, savedUid);
+      }
+    };
+
+    function switchDeviceMode(mode) {
+      const mobileSection = document.getElementById('mode-mobile');
+      const pcSection = document.getElementById('mode-pc');
+      const btnMobile = document.getElementById('btn-mobile');
+      const btnPc = document.getElementById('btn-pc');
+
+      if(mode === 'mobile') {
+        mobileSection.classList.add('active-mode');
+        pcSection.classList.remove('active-mode');
+        btnMobile.classList.add('active');
+        btnPc.classList.remove('active');
+      } else {
+        pcSection.classList.add('active-mode');
+        mobileSection.classList.remove('active-mode');
+        btnPc.classList.add('active');
+        btnMobile.classList.remove('active');
+      }
+    }
+
+    function toggleBubbleMenu() {
+      const menu = document.getElementById('bubble-menu');
+      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function readHardwareSpecs() {
+      const cores = navigator.hardwareConcurrency ? `${navigator.hardwareConcurrency} Cores` : '8 Cores';
+      document.getElementById('mob-cpu-val').innerText = cores;
+      document.getElementById('pc-cpu-val').innerText = cores;
+
+      const platform = navigator.platform || '';
+      let osName = 'Android / Mobile';
+      if (/Win/i.test(platform)) osName = 'Windows PC';
+      document.getElementById('mob-os-val').innerText = osName;
+
+      try {
+        const canvas = document.createElement('canvas');
+        const gl = canvas.getContext('webgl');
+        if (gl) {
+          const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+          const gpuText = debugInfo ? gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL) : 'GPU';
+          const cleanGpu = gpuText.split('/')[0].replace('ANGLE (', '').replace(')', '');
+          document.getElementById('mob-gpu-val').innerText = cleanGpu;
+          document.getElementById('pc-gpu-val').innerText = cleanGpu;
+        }
+      } catch (e) {
+        document.getElementById('mob-gpu-val').innerText = 'Gaming GPU';
+      }
+
+      if (navigator.getBattery) {
+        navigator.getBattery().then(battery => {
+          document.getElementById('mob-batt-val').innerText = `${Math.round(battery.level * 100)}% (شحن سريع)`;
+        });
+      } else {
+        document.getElementById('mob-batt-val').innerText = '100% (Gaming Mode)';
+      }
+    }
+
+    function savePlayer() {
+      const uid = document.getElementById('player-uid').value.trim();
+      const nickname = document.getElementById('player-nickname').value.trim();
+      if(!uid || !nickname) {
+        alert('برجاء كتابة الأيدي والاسم!');
+        return;
+      }
+      localStorage.setItem('ff_uid', uid);
+      localStorage.setItem('ff_name', nickname);
+      displayPlayer(nickname, uid);
+    }
+
+    function displayPlayer(name, uid) {
+      document.getElementById('input-section').style.display = 'none';
+      document.getElementById('player-badge').style.display = 'block';
+      document.getElementById('show-name').innerText = name;
+      document.getElementById('show-uid').innerText = uid;
+    }
+
+    function resetPlayer() {
+      localStorage.removeItem('ff_uid');
+      localStorage.removeItem('ff_name');
+      document.getElementById('player-badge').style.display = 'none';
+      document.getElementById('input-section').style.display = 'flex';
+      document.getElementById('player-uid').value = '';
+      document.getElementById('player-nickname').value = '';
+    }
+
+    function generateMobileConfig() {
+      const redDot = Math.floor(Math.random() * 4) + 94;
+      const box = document.getElementById('mob-result-box');
+      box.innerHTML = `🔥 تم تفعيل إعدادات الـ VIP بنجاح:<br>🎯 نقطة حمراء: ${redDot} | زر الإطلاق: <span style="color:var(--accent-gold);">48%</span>`;
+      box.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
