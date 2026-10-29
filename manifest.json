@@ -1,13 +1,9 @@
 {
-  "background_color": "#ffffff",
-  "dir": "ltr",
-  "display": "standalone",
   "name": "hamada-vip",
-  "orientation": "any",
-  "scope": "/",
   "short_name": "sensi-vip",
-  "start_url": "/",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#ffffff",
   "theme_color": "#ffffff",
-  "description": "Free FIRE حساسيه بايدي مصريه",
-  "id": "hamada.sensi.com"
+  "orientation": "any"
 }
