@@ -1,9 +1,10 @@
 {
-  "name": "hamada-vip",
-  "short_name": "sensi-vip",
+  "name": "VIP-SENSI Pro",
+  "short_name": "VIP-SENSI",
+  "description": "Sensitivity checker and generator",
   "start_url": ".",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#ffffff",
-  "orientation": "any"
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "icons": []
 }
