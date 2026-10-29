@@ -1610,3 +1610,527 @@
   </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="html-root">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>hamada2013EL | VIP Platform & Admin Control</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --bg-color: #0b0e14;
+      --card-bg: #151a23;
+      --text-main: #ffffff;
+      --text-dim: #9aa0a6;
+      --accent-ff: #ff4655;
+      --accent-gold: #ffb800;
+      --border-color: rgba(255, 255, 255, 0.08);
+      --input-bg: rgba(0, 0, 0, 0.4);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Tajawal', sans-serif;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      min-height: 100vh;
+      padding-bottom: 60px;
+    }
+
+    /* شاشة إدخال كود التفعيل للعميل */
+    #activation-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(11, 14, 20, 0.98);
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    /* شاشة تسجيل دخول الأدمن الخاصة بك */
+    #admin-login-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(11, 14, 20, 0.98);
+      z-index: 999999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .activation-card, .admin-card {
+      background: var(--card-bg);
+      border: 2px solid var(--accent-ff);
+      border-radius: 20px;
+      padding: 30px;
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+      box-shadow: 0 10px 40px rgba(255, 70, 85, 0.3);
+    }
+
+    .admin-card { border-color: var(--accent-gold); }
+
+    .activation-card h2, .admin-card h2 {
+      color: var(--accent-gold);
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .activation-card p, .admin-card p {
+      color: var(--text-dim);
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+
+    .activation-input, .admin-input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border-color);
+      background: var(--input-bg);
+      color: var(--text-main);
+      font-size: 1rem;
+      text-align: center;
+      margin-bottom: 15px;
+      outline: none;
+      font-weight: 700;
+    }
+
+    .activation-btn, .admin-btn {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(90deg, #ff4655, #ff7300);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .admin-btn { background: linear-gradient(90deg, #ffb800, #ff7300); color: #0b0e14; }
+
+    .error-msg {
+      color: var(--accent-ff);
+      font-size: 0.85rem;
+      margin-top: 10px;
+      display: none;
+    }
+
+    .success-msg {
+      color: #22c55e;
+      font-size: 0.85rem;
+      margin-top: 10px;
+      display: none;
+    }
+
+    #main-app-content, #admin-dashboard { display: none; }
+
+    /* تصميم لوحة تحكم الأدمن الداخلية */
+    .admin-panel-container {
+      max-width: 800px;
+      margin: 40px auto;
+      background: var(--card-bg);
+      border: 1px solid var(--accent-gold);
+      border-radius: 16px;
+      padding: 25px;
+    }
+
+    .code-list-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--input-bg);
+      padding: 10px 15px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+    }
+
+    .delete-code-btn {
+      background: var(--accent-ff);
+      color: #fff;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+
+    .top-bar {
+      background: rgba(21, 26, 35, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 70, 85, 0.2);
+      padding: 12px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-title {
+      font-size: 1.2rem;
+      font-weight: 900;
+      color: var(--accent-ff);
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 20px auto;
+      padding: 0 15px;
+    }
+
+    .hero-banner {
+      text-align: center;
+      padding: 35px 15px;
+      background: linear-gradient(180deg, rgba(255,70,85,0.15) 0%, transparent 100%);
+      border-radius: 16px;
+      margin-bottom: 20px;
+    }
+
+    .hero-banner h1 {
+      font-size: 1.9rem;
+      font-weight: 900;
+      color: var(--accent-gold);
+      margin-bottom: 8px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .action-btn {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(90deg, #ff4655, #ff7300);
+      color: #fff;
+      font-size: 1.05rem;
+      font-weight: 900;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+
+    .floating-bubble {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(45deg, #ff4655, #ff7300);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(255, 70, 85, 0.6);
+      z-index: 999;
+    }
+
+    .bubble-menu {
+      position: fixed;
+      bottom: 100px;
+      right: 30px;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      width: 220px;
+      padding: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      display: none;
+      z-index: 998;
+    }
+
+    .bubble-menu a {
+      display: block;
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 0.85rem;
+      padding: 6px 0;
+      font-weight: 700;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. شاشة تفعيل الكود للعميل العادي -->
+  <div id="activation-screen">
+    <div class="activation-card">
+      <h2><i class="fa-solid fa-lock"></i> منصة VIP الآمنة</h2>
+      <p>أدخل كود التفعيل الخاص بك:</p>
+      <input type="text" id="activation-code-input" class="activation-input" placeholder="HAMADA-XXXX">
+      <button class="activation-btn" onclick="verifyCode()">تفعيل الحساب</button>
+      <div id="error-msg" class="error-msg">⚠️ الكود خاطئ أو منتهي الصلاحية!</div>
+      <div id="success-msg" class="success-msg">✅ تم التفعيل بنجاح!</div>
+      <div style="margin-top: 15px; font-size: 0.8rem; color: var(--text-dim);">
+        لشراء كود (فودافون كاش): <a href="https://whatsapp.com/channel/0029VbD4lmYKQuJFAxU2Lo0d" target="_blank" style="color: var(--accent-gold);">تواصل عبر الواتساب</a><br>
+        <a href="#" onclick="openAdminLogin()" style="color: var(--accent-ff); font-size: 0.75rem; display:inline-block; margin-top:8px;">🔒 دخول لوحة تحكم الأدمن</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. شاشة تسجيل دخول الأدمن (لك وحدك) -->
+  <div id="admin-login-screen">
+    <div class="admin-card">
+      <h2><i class="fa-solid fa-user-shield"></i> تسجيل دخول الأدمن</h2>
+      <p>اكتب باسورد الإدارة السري:</p>
+      <input type="password" id="admin-pass-input" class="admin-input" placeholder="باسورد الأدمن...">
+      <button class="admin-btn" onclick="verifyAdmin()">دخول اللوحة</button>
+      <div id="admin-error" class="error-msg">⚠️ الباسورد خطأ!</div>
+      <div style="margin-top: 15px;">
+        <a href="#" onclick="closeAdminLogin()" style="color: var(--text-dim); font-size: 0.8rem;">إلغاء والعودة</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. لوحة تحكم الأدمن (تظهر لك بعد كتابة باسورد الأدمن) -->
+  <div id="admin-dashboard">
+    <div class="container">
+      <div class="admin-panel-container">
+        <h2><i class="fa-solid fa-gauge-high" style="color:var(--accent-gold)"></i> لوحة تحكم الأدمن (Hamada Control)</h2>
+        <p style="color:var(--text-dim); font-size:0.85rem; margin-bottom:20px;">من هنا يمكنك صنع أكواد جديدة للمشتركين ومراقبة الأجهزة والتحكم فيها.</p>
+        
+        <div class="card" style="margin-bottom:15px;">
+          <h3 style="font-size:1rem; color:var(--accent-ff); margin-bottom:10px;">➕ إنشاء كود تفعيل جديد</h3>
+          <input type="text" id="new-code-name" class="activation-input" placeholder="اكتب اسم الكود (مثال: VIP-MOHAMED)">
+          <input type="date" id="new-code-date" class="activation-input" style="color-scheme: dark;">
+          <button class="action-btn" onclick="addNewCode()" style="margin-top:5px; padding:10px;">حفظ وإضافة الكود</button>
+        </div>
+
+        <h3 style="font-size:1rem; color:var(--accent-gold); margin-bottom:10px;">📋 الأكواد النشطة حالياً</h3>
+        <div id="admin-codes-list"></div>
+
+        <button class="action-btn" onclick="logoutAdmin()" style="background:#334155; margin-top:20px;">خروج من لوحة الأدمن</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. محتوى التطبيق الأساسي للمشترك -->
+  <div id="main-app-content">
+    <div class="floating-bubble" onclick="toggleBubbleMenu()">
+      <i class="fa-solid fa-crosshairs"></i>
+    </div>
+
+    <div class="bubble-menu" id="bubble-menu">
+      <h4 style="color:var(--accent-gold); margin-bottom:8px;">إعدادات المشترك</h4>
+      <p id="subscription-info" style="font-size: 0.75rem; color:var(--text-dim); margin-bottom:8px;"></p>
+      <a href="#" onclick="lockAppAgain()"><i class="fa-solid fa-lock"></i> تسجيل خروج / قفل</a>
+    </div>
+
+    <header class="top-bar">
+      <div class="brand-title">hamada2013EL VIP Hub</div>
+      <a href="https://whatsapp.com/channel/0029VbD4lmYKQuJFAxU2Lo0d" target="_blank" style="color:#25d366; font-weight:700; text-decoration:none;"><i class="fa-brands fa-whatsapp"></i> واتساب</a>
+    </header>
+
+    <div class="container">
+      <div class="hero-banner">
+        <h1>أهلاً بك يا بطل في لوحة التحكم المدفوعة</h1>
+        <p>تم التحقق من كود التفعيل الخاص بك بنجاح وجهازك مصرح له بالعمل.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-header" style="font-size:1.1rem; color:var(--accent-ff); margin-bottom:10px;">أدوات الحساسية والجرافيكس الحصرية</div>
+        <p style="color:var(--text-dim);">جميع الإعدادات هنا مفتوحة ومخصصة لجهازك بأعلى دقة.</p>
+        <button class="action-btn" onclick="alert('تم تفعيل إعدادات الهيدشوت على جهازك!')">توليد الإعدادات الشاملة الآن</button>
+      </div>
+    </div>
+
+    <footer>
+      جميع الحقوق محفوظة © 2026 لقناة <strong>hamada2013EL</strong>
+    </footer>
+  </div>
+
+  <script>
+    // 🔑 باسورد الأدمن السري الخاص بك (يمكنك تغليفه أو تعديله هنا)
+    const ADMIN_PASSWORD = "hamada_admin_2026";
+
+    // الأكواد الافتراضية المخزنة محلياً (تتحدث تلقائياً)
+    function getStoredCodes() {
+      let saved = localStorage.getItem('system_vip_codes');
+      if (!saved) {
+        let initial = {
+          "VIP-MONTHLY-01": "2026-12-31",
+          "VIP-YEARLY-99": "2027-10-29",
+          "HAMADA-PRO": "2030-01-01"
+        };
+        localStorage.setItem('system_vip_codes', JSON.stringify(initial));
+        return initial;
+      }
+      return JSON.parse(saved);
+    }
+
+    function verifyCode() {
+      const inputVal = document.getElementById('activation-code-input').value.trim();
+      const errorMsg = document.getElementById('error-msg');
+      const successMsg = document.getElementById('success-msg');
+      let validCodes = getStoredCodes();
+
+      if (validCodes[inputVal]) {
+        const expiryDate = new Date(validCodes[inputVal]);
+        const currentDate = new Date();
+
+        if (currentDate <= expiryDate) {
+          errorMsg.style.display = 'none';
+          successMsg.style.display = 'block';
+          
+          localStorage.setItem('vip_activated', 'true');
+          localStorage.setItem('vip_code', inputVal);
+          localStorage.setItem('vip_expiry', validCodes[inputVal]);
+
+          setTimeout(() => {
+            document.getElementById('activation-screen').style.display = 'none';
+            document.getElementById('main-app-content').style.display = 'block';
+            loadSubInfo();
+          }, 1000);
+        } else {
+          errorMsg.innerText = "⚠️ عذراً، هذا الكود انتهت صلاحيته!";
+          errorMsg.style.display = 'block';
+        }
+      } else {
+        errorMsg.innerText = "⚠️ الكود غير صحيح!";
+        errorMsg.style.display = 'block';
+      }
+    }
+
+    // دوال تحكم الأدمن
+    function openAdminLogin() {
+      document.getElementById('admin-login-screen').style.display = 'flex';
+    }
+
+    function closeAdminLogin() {
+      document.getElementById('admin-login-screen').style.display = 'none';
+    }
+
+    function verifyAdmin() {
+      const pass = document.getElementById('admin-pass-input').value.trim();
+      if (pass === ADMIN_PASSWORD) {
+        document.getElementById('admin-login-screen').style.display = 'none';
+        document.getElementById('activation-screen').style.display = 'none';
+        document.getElementById('admin-dashboard').style.display = 'block';
+        renderAdminCodes();
+      } else {
+        document.getElementById('admin-error').style.display = 'block';
+      }
+    }
+
+    function renderAdminCodes() {
+      let codes = getStoredCodes();
+      let listDiv = document.getElementById('admin-codes-list');
+      listDiv.innerHTML = '';
+      
+      for (let code in codes) {
+        listDiv.innerHTML += `
+          <div class="code-list-item">
+            <span>🔑 <b>${code}</b> (ينتهي في: ${codes[code]})</span>
+            <button class="delete-code-btn" onclick="deleteCode('${code}')">حذف / إيقاف</button>
+          </div>
+        `;
+      }
+    }
+
+    function addNewCode() {
+      let codeName = document.getElementById('new-code-name').value.trim();
+      let codeDate = document.getElementById('new-code-date').value;
+
+      if (!codeName || !codeDate) {
+        alert('برجاء كتابة اسم الكود وتحديد تاريخ الانتهاء!');
+        return;
+      }
+
+      let codes = getStoredCodes();
+      codes[codeName] = codeDate;
+      localStorage.setItem('system_vip_codes', JSON.stringify(codes));
+      
+      document.getElementById('new-code-name').value = '';
+      document.getElementById('new-code-date').value = '';
+      renderAdminCodes();
+      alert('تم إضافة الكود بنجاح!');
+    }
+
+    function deleteCode(code) {
+      let codes = getStoredCodes();
+      delete codes[code];
+      localStorage.setItem('system_vip_codes', JSON.stringify(codes));
+      renderAdminCodes();
+    }
+
+    function logoutAdmin() {
+      document.getElementById('admin-dashboard').style.display = 'none';
+      document.getElementById('activation-screen').style.display = 'flex';
+      document.getElementById('admin-pass-input').value = '';
+    }
+
+    function loadSubInfo() {
+      const code = localStorage.getItem('vip_code');
+      const expiry = localStorage.getItem('vip_expiry');
+      document.getElementById('subscription-info').innerHTML = `الكود: <b>${code}</b><br>ينتهي في: <span style="color:var(--accent-gold);">${expiry}</span>`;
+    }
+
+    function lockAppAgain() {
+      localStorage.removeItem('vip_activated');
+      localStorage.removeItem('vip_code');
+      localStorage.removeItem('vip_expiry');
+      location.reload();
+    }
+
+    function toggleBubbleMenu() {
+      const menu = document.getElementById('bubble-menu');
+      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // فحص التفعيل عند الفتح
+    window.onload = function() {
+      const isActivated = localStorage.getItem('vip_activated');
+      const expiry = localStorage.getItem('vip_expiry');
+      
+      if (isActivated === 'true' && expiry) {
+        const currentDate = new Date();
+        const expiryDate = new Date(expiry);
+
+        if (currentDate <= expiryDate) {
+          document.getElementById('activation-screen').style.display = 'none';
+          document.getElementById('main-app-content').style.display = 'block';
+          loadSubInfo();
+        } else {
+          localStorage.removeItem('vip_activated');
+        }
+      }
+    };
+  </script>
+</body>
+</html>
