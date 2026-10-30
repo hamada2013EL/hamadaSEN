@@ -1,534 +1,982 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIP-SENSI PRO</title>
+    <title>VIP-SENSI PRO - Sensitivity & Performance Hub</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Cairo & Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            red: '#FF2E55',
+                            yellow: '#FFB800',
+                            blue: '#00D2FF',
+                            purple: '#9D00FF',
+                            darkBg: '#0b0f19',
+                            cardBg: '#151c2e',
+                            border: '#232e4a'
+                        }
+                    },
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        :root {
-            --bg-color: #0b0f19;
-            --card-bg: #151c2c;
-            --accent-color: #00d2ff;
-            --accent-gradient: linear-gradient(135deg, #00d2ff, #3a7bd5);
-            --text-color: #ffffff;
-            --text-dim: #94a3b8;
-            --green: #00e676;
-            --red: #ff5252;
-            --gold: #ffd700;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            -webkit-tap-highlight-color: transparent;
-        }
-
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 15px;
-            background-image: radial-gradient(circle at top, #1e293b 0%, var(--bg-color) 70%);
+            font-family: 'Cairo', sans-serif;
+            background-color: #080c14;
+            color: #f3f4f6;
+            overflow-x: hidden;
         }
 
-        /* Passcode Screen */
-        #passcode-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(11, 15, 25, 0.98);
-            backdrop-filter: blur(10px);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 10000;
+        .glass-card {
+            background: rgba(21, 28, 46, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
         }
 
-        .passcode-card {
-            background: var(--card-bg);
-            padding: 30px 25px;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 210, 255, 0.2);
-            max-width: 340px;
-            width: 90%;
-            border: 1px solid rgba(0, 210, 255, 0.3);
+        .neon-glow-red {
+            box-shadow: 0 0 15px rgba(255, 46, 85, 0.4);
         }
 
-        .passcode-card h2 {
-            font-size: 22px;
-            background: var(--accent-gradient);
+        .neon-glow-yellow {
+            box-shadow: 0 0 15px rgba(255, 184, 0, 0.4);
+        }
+
+        .neon-glow-blue {
+            box-shadow: 0 0 15px rgba(255, 210, 255, 0.4);
+        }
+
+        .gradient-text-vip {
+            background: linear-gradient(135deg, #FF2E55 0%, #FFB800 50%, #00D2FF 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 5px;
         }
 
-        .passcode-card input {
-            width: 100%;
-            padding: 14px;
-            margin: 20px 0;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: #0b0f19;
-            color: #fff;
-            text-align: center;
-            font-size: 22px;
-            letter-spacing: 8px;
-            outline: none;
-            transition: 0.3s;
+        ::-webkit-scrollbar {
+            width: 8px;
         }
-
-        .passcode-card input:focus {
-            border-color: var(--accent-color);
-            box-shadow: 0 0 10px rgba(0, 210, 255, 0.4);
+        ::-webkit-scrollbar-track {
+            background: #080c14;
         }
-
-        /* Main Container */
-        .app-container {
-            width: 100%;
-            max-width: 550px;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
+        ::-webkit-scrollbar-thumb {
+            background: #232e4a;
+            border-radius: 4px;
         }
-
-        .header {
-            text-align: center;
-            background: var(--card-bg);
-            padding: 20px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-        }
-
-        .header h1 {
-            font-size: 26px;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 8px;
-        }
-
-        .lang-switch {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 15px;
-        }
-
-        .lang-btn {
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--text-dim);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 8px 14px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .lang-btn.active {
-            background: var(--accent-gradient);
-            color: #fff;
-            border: none;
-            box-shadow: 0 4px 12px rgba(0, 210, 255, 0.3);
-        }
-
-        .card {
-            background: var(--card-bg);
-            padding: 20px;
-            border-radius: 18px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-        }
-
-        .card-title {
-            font-size: 17px;
-            color: var(--accent-color);
-            margin-bottom: 14px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .btn-main {
-            width: 100%;
-            padding: 14px;
-            background: var(--accent-gradient);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-size: 15px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0, 210, 255, 0.3);
-            transition: 0.3s;
-        }
-
-        .btn-main:active {
-            transform: scale(0.98);
-        }
-
-        .info-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .info-box {
-            background: rgba(11, 15, 25, 0.6);
-            padding: 12px;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.03);
-        }
-
-        .info-box label {
-            display: block;
-            color: var(--text-dim);
-            font-size: 11px;
-            margin-bottom: 4px;
-        }
-
-        .info-box span {
-            font-weight: bold;
-            font-size: 14px;
-        }
-
-        .sensi-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .sensi-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 14px;
-            background: rgba(11, 15, 25, 0.5);
-            border-radius: 10px;
-        }
-
-        .sensi-val {
-            color: var(--green);
-            font-weight: bold;
-            font-size: 16px;
-        }
-
-        .social-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 14px;
-            border-radius: 12px;
-            text-decoration: none;
-            color: white;
-            font-weight: bold;
-            font-size: 14px;
-            margin-top: 10px;
-            transition: 0.3s;
-        }
-
-        .wa { background: #25D366; box-shadow: 0 4px 12px rgba(37, 211, 102, 0.2); }
-        .yt { background: #FF0000; box-shadow: 0 4px 12px rgba(255, 0, 0, 0.2); }
-        .tk { background: #111; border: 1px solid rgba(255,255,255,0.1); }
-
-        .footer {
-            text-align: center;
-            padding: 20px 0;
-            color: var(--text-dim);
-            font-size: 13px;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            overflow: hidden;
-            margin-top: 12px;
-            display: none;
-        }
-
-        .progress-fill {
-            height: 100%;
-            width: 0%;
-            background: var(--accent-gradient);
-            transition: width 0.1s;
-        }
-
-        .alert-thermal {
-            background: rgba(255, 82, 82, 0.1);
-            border: 1px solid var(--red);
-            color: #ff8a8a;
-            padding: 10px;
-            border-radius: 10px;
-            font-size: 12px;
-            margin-top: 10px;
-            line-height: 1.5;
-            display: none;
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FF2E55;
         }
     </style>
 </head>
-<body>
+<body class="min-h-screen flex flex-col justify-between">
 
-    <!-- Lock Screen -->
-    <div id="passcode-overlay">
-        <div class="passcode-card">
-            <h2 id="passTitle">VIP-SENSI PRO</h2>
-            <p style="font-size: 12px; color: var(--text-dim);" id="passSub">أدخل رمز الدخول لفتح التطبيق</p>
-            <input type="password" id="passInput" placeholder="****" maxlength="8">
-            <button class="btn-main" onclick="checkPasscode()" id="passBtn">دخول</button>
-            <p id="passErr" style="color: var(--red); font-size: 12px; margin-top: 10px; display: none;">رمز الدخول خاطئ!</p>
-        </div>
-    </div>
-
-    <!-- Main Content -->
-    <div class="app-container">
-        
-        <!-- Header -->
-        <div class="header">
-            <h1>VIP-SENSI PRO</h1>
-            <p style="font-size: 13px; color: var(--text-dim);" id="headerSub">فاحص الحساسية والأداء المطور</p>
+    <!-- Passcode Modal Layer -->
+    <div id="passcode-screen" class="fixed inset-0 z-50 bg-brand-darkBg flex items-center justify-center p-4">
+        <div class="glass-card max-w-sm w-full p-6 rounded-2xl text-center space-y-6 border border-brand-red/40 shadow-2xl">
+            <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-brand-red to-brand-yellow p-[2px] mx-auto">
+                <div class="w-full h-full bg-brand-darkBg rounded-2xl flex items-center justify-center">
+                    <i class="fa-solid fa-lock text-2xl text-brand-yellow"></i>
+                </div>
+            </div>
             
-            <div class="lang-switch">
-                <button class="lang-btn active" onclick="setLang('eg')">مصري 🇪🇬</button>
-                <button class="lang-btn" onclick="setLang('ar')">عربي 🇸🇦</button>
-                <button class="lang-btn" onclick="setLang('en')">English 🇺🇸</button>
+            <div>
+                <h2 class="text-xl font-black text-white">VIP-SENSI PRO</h2>
+                <p class="text-xs text-gray-400 mt-1" id="passcode-title">أدخل رمز المرور لفتح التطبيق</p>
             </div>
-        </div>
 
-        <!-- Scan Card -->
-        <div class="card">
-            <div class="card-title" id="titleScan">🔍 فحص الجهاز وقراءة الفريمات</div>
-            <p style="font-size: 12px; color: var(--text-dim); margin-bottom: 12px;" id="descScan">سيتم عمل اختبار أداء حقيقي لمدة 3 ثوانٍ لقياس الـ FPS وضمان عدم سخونة الموبايل.</p>
-            <button class="btn-main" onclick="startScan()" id="btnScan">ابدأ الفحص الشامل</button>
-
-            <div class="progress-bar" id="pBar"><div class="progress-fill" id="pFill"></div></div>
-
-            <div class="info-grid" id="infoGrid" style="display: none;">
-                <div class="info-box"><label id="lblFps">الفريمات الفعلية</label><span id="valFps" style="color: var(--green);">-- FPS</span></div>
-                <div class="info-box"><label id="lblRam">الرامات التقديرية</label><span id="valRam">-- GB</span></div>
-                <div class="info-box"><label id="lblCores">أنوية المعالج</label><span id="valCores">-- Cores</span></div>
-                <div class="info-box"><label id="lblScreen">أبعاد الشاشة</label><span id="valScreen">--</span></div>
-                <div class="info-box" style="grid-column: span 2;"><label id="lblGpu">كارت الشاشة</label><span id="valGpu" style="font-size: 11px;">--</span></div>
+            <div class="space-y-4">
+                <input type="password" id="passcode-input" maxlength="10" placeholder="••••" class="w-full text-center tracking-widest text-2xl font-bold bg-brand-darkBg/90 border border-brand-border text-white py-3 rounded-xl focus:outline-none focus:border-brand-red transition">
+                <button onclick="checkPasscode()" class="w-full py-3 bg-gradient-to-r from-brand-red to-brand-yellow text-black font-black text-sm rounded-xl hover:brightness-110 active:scale-95 transition">
+                    دخول التطبيق <i class="fa-solid fa-key ml-1"></i>
+                </button>
             </div>
+            <p id="passcode-error" class="text-xs text-brand-red font-bold hidden"><i class="fa-solid fa-circle-exclamation"></i> رمز المرور غير صحيح!</p>
         </div>
-
-        <!-- Graphics Card -->
-        <div class="card" id="cardGfx" style="display: none;">
-            <div class="card-title" id="titleGfx">🎮 توصية الجرافيكس وحماية الهاتف</div>
-            <div id="gfxResult" style="font-weight: bold; color: var(--gold); font-size: 14px;">--</div>
-            <div class="alert-thermal" id="thermalAlert">
-                ⚠️ **وضع الحماية:** تم ضبط هذه الإعدادات خصيصاً لمنع سخونة جهازك ومنع هبوط الفريمات أثناء اللعب المكثف.
-            </div>
-        </div>
-
-        <!-- Sensitivity Card -->
-        <div class="card" id="cardSensi" style="display: none;">
-            <div class="card-title" id="titleSensi">🎯 الحساسية الموصى بها</div>
-            <div class="sensi-list">
-                <div class="sensi-row"><span id="lblGen">عام (General)</span><span class="sensi-val" id="vGen">--</span></div>
-                <div class="sensi-row"><span id="lblRed">نقطة حمراء (Red Dot)</span><span class="sensi-val" id="vRed">--</span></div>
-                <div class="sensi-row"><span id="lbl2x">سكوب 2x</span><span class="sensi-val" id="v2x">--</span></div>
-                <div class="sensi-row"><span id="lbl4x">سكوب 4x</span><span class="sensi-val" id="v4x">--</span></div>
-                <div class="sensi-row"><span id="lblSniper">قناصة (Sniper)</span><span class="sensi-val" id="vSniper">--</span></div>
-                <div class="sensi-row"><span id="lblFree">نظرة حرة (Free Look)</span><span class="sensi-val" id="vFree">--</span></div>
-                <div class="sensi-row"><span id="lblBtn">حجم زر الضرب</span><span class="sensi-val" id="vBtn">--</span></div>
-                <div class="sensi-row"><span id="lblDpi">المقترح DPI</span><span class="sensi-val" id="vDpi">--</span></div>
-            </div>
-        </div>
-
-        <!-- PC / Emulator Section -->
-        <div class="card" id="cardEmu" style="display: none;">
-            <div class="card-title" id="titleEmu">💻 إعدادات المحاكي / الكمبيوتر</div>
-            <p style="font-size: 12px; color: var(--text-dim); line-height: 1.6;" id="txtEmu">
-                نصائح المحاكي (LDPlayer / SmartGaaga):<br>
-                - تفعيل خاصية Virtualization (VT) من الـ BIOS.<br>
-                - ضبط DPI المحاكي على 240 أو 320.<br>
-                - جعل معدل التحديث 60Hz أو 90Hz ثابت.
-            </p>
-        </div>
-
-        <!-- Social Media Card -->
-        <div class="card">
-            <div class="card-title" id="titleSocial">📢 مجتمعنا ورسائل التواصل</div>
-            <a href="https://whatsapp.com/channel/0029VbD4lmYKQuJFAxU2Lo0d" target="_blank" rel="noopener noreferrer" class="social-btn wa">
-                💬 قناة الواتساب الرسمية
-            </a>
-            <a href="https://www.youtube.com/@hamada2013EL" target="_blank" rel="noopener noreferrer" class="social-btn yt">
-                ▶️ قناة اليوتيوب الرسمية
-            </a>
-            <a href="https://tiktok.com/@hamada2013el" target="_blank" rel="noopener noreferrer" class="social-btn tk">
-                🎵 حساب التيك توك الرسمي
-            </a>
-        </div>
-
-        <!-- Footer -->
-        <div class="footer">
-            تم الإنشاء بواسطة <b>hamada2013EL</b>
-        </div>
-
     </div>
 
-    <script>
-        const PASSCODE = "1234";
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="fixed top-5 left-1/2 transform -translate-x-1/2 z-50 flex flex-col gap-2 pointer-events-none"></div>
 
-        const langData = {
-            eg: {
-                passTitle: "VIP-SENSI PRO", passSub: "ادخل الباسورد عشان تفتح الابلكيشن", passBtn: "دخول", passErr: "الباسورد غلط يا عالمي!",
-                headerSub: "فاحص الحساسية والأداء المطور", titleScan: "🔍 فحص الجهاز وقراءة الفريمات",
-                descScan: "التطبيق هيعمل اختبار حي 3 ثواني عشان يقيس الـ FPS الحقيقي وميحميش الموبايل.",
-                btnScan: "ابدأ الفحص الشامل", lblFps: "الفريمات الفعلية", lblRam: "الرامات التقديرية",
-                lblCores: "أجزاء المعالج", lblScreen: "أبعاد الشاشة", lblGpu: "كارت الشاشة",
-                titleGfx: "🎮 توصية الجرافيكس وحماية الهاتف", titleSensi: "🎯 الحساسية الموصى بيها",
-                lblGen: "عام (General)", lblRed: "نقطة حمراء (Red Dot)", lbl2x: "سكوب 2x", lbl4x: "سكوب 4x",
-                lblSniper: "قناصة (Sniper)", lblFree: "نظرة حرة", lblBtn: "حجم زرار الضرب", lblDpi: "الـ DPI المقترح",
-                titleEmu: "💻 إعدادات المحاكي / الكمبيوتر", titleSocial: "📢 مجتمعنا ورسائل التواصل"
-            },
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-40 glass-card border-b border-brand-border/50 px-4 py-3">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-2">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-red via-brand-yellow to-brand-blue p-[2px] shadow-lg">
+                    <div class="w-full h-full bg-brand-darkBg rounded-[10px] flex items-center justify-center">
+                        <span class="text-xl">🦅</span>
+                    </div>
+                </div>
+                <div>
+                    <h1 class="font-black text-xl tracking-wider gradient-text-vip uppercase">VIP-SENSI PRO</h1>
+                    <p class="text-[10px] text-gray-400 font-semibold uppercase tracking-widest" id="app-tagline">أداة الحساسية الفائقة الذكية</p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <label for="lang-select" class="hidden sm:inline text-xs text-gray-400"><i class="fa-solid fa-globe"></i></label>
+                <select id="lang-select" onchange="changeLanguage(this.value)" class="bg-brand-darkBg text-white border border-brand-border text-xs rounded-lg px-2.5 py-1.5 focus:outline-none focus:border-brand-red cursor-pointer font-bold">
+                    <option value="ar">العربية (الفصحى)</option>
+                    <option value="eg">المصري (بلدي)</option>
+                    <option value="en">English (E)</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto w-full px-4 py-6 flex-grow space-y-8">
+
+        <!-- Navigation Tabs -->
+        <nav class="flex flex-wrap items-center justify-center gap-2 p-1.5 bg-brand-darkBg/80 rounded-2xl border border-brand-border/60">
+            <button onclick="switchTab('sensi')" id="tab-btn-sensi" class="tab-btn active px-5 py-2.5 rounded-xl font-bold text-sm transition-all duration-300 flex items-center gap-2 bg-brand-red text-white neon-glow-red">
+                <i class="fa-solid fa-crosshairs"></i> <span data-i18n="nav_sensi">إعدادات الحساسية</span>
+            </button>
+            <button onclick="switchTab('device')" id="tab-btn-device" class="tab-btn px-5 py-2.5 rounded-xl font-bold text-sm transition-all duration-300 flex items-center gap-2 text-gray-400 hover:text-white hover:bg-brand-cardBg">
+                <i class="fa-solid fa-microchip"></i> <span data-i18n="nav_device">فحص الجهاز والـ FPS</span>
+            </button>
+            <button onclick="switchTab('graphics')" id="tab-btn-graphics" class="tab-btn px-5 py-2.5 rounded-xl font-bold text-sm transition-all duration-300 flex items-center gap-2 text-gray-400 hover:text-white hover:bg-brand-cardBg">
+                <i class="fa-solid fa-sliders"></i> <span data-i18n="nav_graphics">الجرافيكس الموصى به</span>
+            </button>
+            <button onclick="switchTab('platforms')" id="tab-btn-platforms" class="tab-btn px-5 py-2.5 rounded-xl font-bold text-sm transition-all duration-300 flex items-center gap-2 text-gray-400 hover:text-white hover:bg-brand-cardBg">
+                <i class="fa-solid fa-gamepad"></i> <span data-i18n="nav_platforms">إعدادات المحاكي/الهاتف</span>
+            </button>
+            <button onclick="switchTab('social')" id="tab-btn-social" class="tab-btn px-5 py-2.5 rounded-xl font-bold text-sm transition-all duration-300 flex items-center gap-2 text-gray-400 hover:text-white hover:bg-brand-cardBg">
+                <i class="fa-solid fa-heart text-brand-red"></i> <span data-i18n="nav_social">تواصل معنا</span>
+            </button>
+        </nav>
+
+        <!-- SECTION 1: FREE FIRE SENSITIVITY TOOL -->
+        <section id="sec-sensi" class="tab-content block space-y-6">
+            <div class="glass-card rounded-2xl p-6 relative overflow-hidden">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-brand-border/60 pb-5">
+                    <div>
+                        <h2 class="text-2xl font-extrabold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-bolt text-brand-yellow"></i>
+                            <span data-i18n="sensi_title">حساسية هيدشوت فاخرة (مستخلصة من جهازك)</span>
+                        </h2>
+                        <p class="text-xs text-gray-400 mt-1" data-i18n="sensi_desc">تم ضبط القيم تلقائياً بناءً على فحص سرعة وإمكانيات جهازك الفعلي لمنع الأيم المبعثر</p>
+                    </div>
+                    <!-- Presets -->
+                    <div class="flex flex-wrap items-center gap-2">
+                        <button onclick="applyPreset('deviceAuto')" class="px-3 py-1.5 rounded-lg bg-green-500/20 text-green-400 border border-green-500/40 text-xs font-bold hover:bg-green-500 hover:text-black transition">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i> <span data-i18n="preset_auto">حساسية جهازك الذكية (Auto)</span>
+                        </button>
+                        <button onclick="applyPreset('pro')" class="px-3 py-1.5 rounded-lg bg-brand-blue/20 text-brand-blue border border-brand-blue/40 text-xs font-bold hover:bg-brand-blue hover:text-black transition">
+                            <i class="fa-solid fa-crown"></i> <span data-i18n="preset_pro">لاعب محترف</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Sliders Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                    <div class="space-y-2 bg-brand-darkBg/60 p-4 rounded-xl border border-brand-border/40">
+                        <div class="flex justify-between items-center text-sm font-bold">
+                            <span class="text-gray-200" data-i18n="sens_general">عام (General)</span>
+                            <span id="val-general" class="text-brand-yellow font-black text-base">98</span>
+                        </div>
+                        <input type="range" id="sens-general" min="0" max="200" value="98" oninput="updateSensVal('general', this.value)" class="w-full accent-brand-yellow cursor-pointer">
+                    </div>
+
+                    <div class="space-y-2 bg-brand-darkBg/60 p-4 rounded-xl border border-brand-border/40">
+                        <div class="flex justify-between items-center text-sm font-bold">
+                            <span class="text-gray-200" data-i18n="sens_reddot">نقطة حمراء (Red Dot)</span>
+                            <span id="val-reddot" class="text-brand-red font-black text-base">95</span>
+                        </div>
+                        <input type="range" id="sens-reddot" min="0" max="200" value="95" oninput="updateSensVal('reddot', this.value)" class="w-full accent-brand-red cursor-pointer">
+                    </div>
+
+                    <div class="space-y-2 bg-brand-darkBg/60 p-4 rounded-xl border border-brand-border/40">
+                        <div class="flex justify-between items-center text-sm font-bold">
+                            <span class="text-gray-200" data-i18n="sens_2x">عدسة 2X (2x Scope)</span>
+                            <span id="val-2x" class="text-brand-blue font-black text-base">92</span>
+                        </div>
+                        <input type="range" id="sens-2x" min="0" max="200" value="92" oninput="updateSensVal('2x', this.value)" class="w-full accent-brand-blue cursor-pointer">
+                    </div>
+
+                    <div class="space-y-2 bg-brand-darkBg/60 p-4 rounded-xl border border-brand-border/40">
+                        <div class="flex justify-between items-center text-sm font-bold">
+                            <span class="text-gray-200" data-i18n="sens_4x">عدسة 4X (4x Scope)</span>
+                            <span id="val-4x" class="text-brand-purple font-black text-base">89</span>
+                        </div>
+                        <input type="range" id="sens-4x" min="0" max="200" value="89" oninput="updateSensVal('4x', this.value)" class="w-full accent-brand-purple cursor-pointer">
+                    </div>
+
+                    <div class="space-y-2 bg-brand-darkBg/60 p-4 rounded-xl border border-brand-border/40">
+                        <div class="flex justify-between items-center text-sm font-bold">
+                            <span class="text-gray-200" data-i18n="sens_sniper">عدسة القناصة (Sniper Scope)</span>
+                            <span id="val-sniper" class="text-green-400 font-black text-base">60</span>
+                        </div>
+                        <input type="range" id="sens-sniper" min="0" max="200" value="60" oninput="updateSensVal('sniper', this.value)" class="w-full accent-green-400 cursor-pointer">
+                    </div>
+
+                    <div class="space-y-2 bg-brand-darkBg/60 p-4 rounded-xl border border-brand-border/40">
+                        <div class="flex justify-between items-center text-sm font-bold">
+                            <span class="text-gray-200" data-i18n="sens_freelook">نظرة حرة (Free Look)</span>
+                            <span id="val-freelook" class="text-pink-400 font-black text-base">75</span>
+                        </div>
+                        <input type="range" id="sens-freelook" min="0" max="200" value="75" oninput="updateSensVal('freelook', this.value)" class="w-full accent-pink-400 cursor-pointer">
+                    </div>
+                </div>
+
+                <!-- DPI & Fire Button -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 pt-6 border-t border-brand-border/60">
+                    <div class="space-y-2 bg-brand-darkBg/80 p-4 rounded-xl border border-brand-yellow/30">
+                        <div class="flex justify-between items-center text-sm font-bold">
+                            <span class="text-brand-yellow flex items-center gap-1.5">
+                                <i class="fa-solid fa-circle-dot"></i> <span data-i18n="btn_fire_size">حجم زر الإطلاق</span>
+                            </span>
+                            <span id="val-button" class="text-brand-yellow font-black text-lg">48%</span>
+                        </div>
+                        <input type="range" id="sens-button" min="30" max="80" value="48" oninput="updateSensVal('button', this.value)" class="w-full accent-brand-yellow cursor-pointer">
+                    </div>
+
+                    <div class="space-y-2 bg-brand-darkBg/80 p-4 rounded-xl border border-brand-blue/30 flex flex-col justify-between">
+                        <div class="flex justify-between items-center text-sm font-bold">
+                            <span class="text-brand-blue flex items-center gap-1.5">
+                                <i class="fa-solid fa-mobile-screen-button"></i> <span data-i18n="dpi_rec">مستشعر الـ DPI الموصى به لجهازك</span>
+                            </span>
+                            <span id="val-dpi" class="text-brand-blue font-black text-lg">560 DPI</span>
+                        </div>
+                        <p class="text-xs text-gray-400" id="dpi-reason-text" data-i18n="dpi_hint">تم حسابه بناءً على ذاكرة ورام جهازك الحالي.</p>
+                    </div>
+                </div>
+
+                <div class="mt-8 flex justify-center">
+                    <button onclick="copyAllSensitivity()" class="w-full sm:w-auto px-8 py-3.5 bg-gradient-to-r from-brand-red via-brand-yellow to-brand-blue text-black font-black text-base rounded-xl shadow-lg hover:brightness-110 active:scale-95 transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-copy text-lg"></i>
+                        <span data-i18n="btn_copy_all">نسخ كافة الإعدادات الحالية</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: DEVICE DIAGNOSTICS & LIVE FPS -->
+        <section id="sec-device" class="tab-content hidden space-y-6">
+            <div class="glass-card rounded-2xl p-6 space-y-6">
+                <div class="flex items-center justify-between border-b border-brand-border/60 pb-4">
+                    <div>
+                        <h2 class="text-2xl font-extrabold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-microchip text-brand-blue"></i>
+                            <span data-i18n="diag_title">فحص وإحصائيات الجهاز الحية</span>
+                        </h2>
+                        <p class="text-xs text-gray-400 mt-1" data-i18n="diag_desc">قراءة دقيقة جداً لخصائص النظام والمشغل ومعدل الفريمات الحقيقي</p>
+                    </div>
+                    <button onclick="runHardwareDiagnostics()" class="px-4 py-2 bg-brand-blue/20 text-brand-blue border border-brand-blue/40 rounded-xl text-xs font-bold hover:bg-brand-blue hover:text-black transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-rotate-right"></i> <span data-i18n="btn_recheck">إعادة الفحص</span>
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="bg-brand-darkBg/90 p-4 rounded-xl border border-brand-red/40 text-center flex flex-col items-center justify-center">
+                        <span class="text-xs text-gray-400 font-bold uppercase" data-i18n="card_fps">معدل الفريمات الحقيقي</span>
+                        <div id="live-fps" class="text-3xl sm:text-4xl font-black text-brand-red my-1">--</div>
+                        <span class="text-[10px] text-gray-500">FPS Realtime</span>
+                    </div>
+
+                    <div class="bg-brand-darkBg/90 p-4 rounded-xl border border-brand-yellow/40 text-center flex flex-col items-center justify-center">
+                        <span class="text-xs text-gray-400 font-bold uppercase" data-i18n="card_device_type">نوع الجهاز</span>
+                        <div id="info-device-type" class="text-lg font-black text-brand-yellow my-1">--</div>
+                        <span id="info-os" class="text-[10px] text-gray-400">--</span>
+                    </div>
+
+                    <div class="bg-brand-darkBg/90 p-4 rounded-xl border border-brand-blue/40 text-center flex flex-col items-center justify-center">
+                        <span class="text-xs text-gray-400 font-bold uppercase" data-i18n="card_cpu">أنواة المعالج</span>
+                        <div id="info-cpu-cores" class="text-3xl sm:text-4xl font-black text-brand-blue my-1">--</div>
+                        <span class="text-[10px] text-gray-500">Logical Cores</span>
+                    </div>
+
+                    <div class="bg-brand-darkBg/90 p-4 rounded-xl border border-brand-purple/40 text-center flex flex-col items-center justify-center">
+                        <span class="text-xs text-gray-400 font-bold uppercase" data-i18n="card_ram">الذاكرة (الرام التقديرية)</span>
+                        <div id="info-ram" class="text-3xl sm:text-4xl font-black text-brand-purple my-1">--</div>
+                        <span class="text-[10px] text-gray-500">RAM Memory</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+                    <div class="bg-brand-darkBg/50 p-4 rounded-xl border border-brand-border/60 space-y-3">
+                        <h3 class="text-sm font-bold text-brand-yellow flex items-center gap-2 border-b border-brand-border/40 pb-2">
+                            <i class="fa-solid fa-desktop"></i> <span data-i18n="sec_display">الشاشة واللمس</span>
+                        </h3>
+                        <div class="flex justify-between text-xs">
+                            <span class="text-gray-400" data-i18n="lbl_res">دقة الشاشة:</span>
+                            <span id="info-screen-res" class="font-bold text-white">--</span>
+                        </div>
+                        <div class="flex justify-between text-xs">
+                            <span class="text-gray-400" data-i18n="lbl_pixel_ratio">كثافة البكسل:</span>
+                            <span id="info-pixel-ratio" class="font-bold text-white">--</span>
+                        </div>
+                        <div class="flex justify-between text-xs">
+                            <span class="text-gray-400" data-i18n="lbl_touch_points">نقاط اللمس المتعدد:</span>
+                            <span id="info-touch" class="font-bold text-white">--</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-brand-darkBg/50 p-4 rounded-xl border border-brand-border/60 space-y-3">
+                        <h3 class="text-sm font-bold text-brand-blue flex items-center gap-2 border-b border-brand-border/40 pb-2">
+                            <i class="fa-solid fa-gamepad"></i> <span data-i18n="sec_gpu">معالج الرسوميات (GPU)</span>
+                        </h3>
+                        <div class="flex justify-between text-xs">
+                            <span class="text-gray-400" data-i18n="lbl_gpu_vendor">المُصنّع:</span>
+                            <span id="info-gpu-vendor" class="font-bold text-white truncate max-w-[200px]">--</span>
+                        </div>
+                        <div class="flex justify-between text-xs">
+                            <span class="text-gray-400" data-i18n="lbl_gpu_renderer">كرت الشاشة:</span>
+                            <span id="info-gpu-renderer" class="font-bold text-white truncate max-w-[200px]">--</span>
+                        </div>
+                        <div class="flex justify-between text-xs">
+                            <span class="text-gray-400" data-i18n="lbl_battery">مستوى البطارية:</span>
+                            <span id="info-battery" class="font-bold text-green-400">--</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: AUTO GRAPHICS RECOMMENDATION -->
+        <section id="sec-graphics" class="tab-content hidden space-y-6">
+            <div class="glass-card rounded-2xl p-6 space-y-6">
+                <div class="border-b border-brand-border/60 pb-4">
+                    <h2 class="text-2xl font-extrabold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-sliders text-brand-yellow"></i>
+                        <span data-i18n="gfx_title">إعدادات الجرافيكس الموصى بها تلقائياً</span>
+                    </h2>
+                    <p class="text-xs text-gray-400 mt-1" data-i18n="gfx_desc">بناءً على فحص إمكانيات كرت الشاشة والرام والفريمات الخاصة بجهازك</p>
+                </div>
+
+                <div id="gfx-recommended-badge" class="p-4 rounded-xl bg-gradient-to-r from-brand-red/20 via-brand-yellow/20 to-brand-blue/20 border border-brand-yellow/40 flex items-center justify-between">
+                    <div>
+                        <span class="text-xs font-bold text-gray-300 block" data-i18n="gfx_preset_label">النمط الأنسب لجهازك:</span>
+                        <span id="gfx-preset-name" class="text-xl font-black text-brand-yellow">تحليل الجهاز جارٍ...</span>
+                    </div>
+                    <i class="fa-solid fa-shield-halved text-3xl text-brand-yellow"></i>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                    <div class="bg-brand-darkBg/70 p-4 rounded-xl border border-brand-border/60">
+                        <span class="text-xs text-gray-400 font-bold block mb-1" data-i18n="gfx_quality">جودة الجرافيكس (Graphics)</span>
+                        <span id="rec-gfx-quality" class="text-lg font-black text-brand-blue">سلس (Smooth)</span>
+                    </div>
+
+                    <div class="bg-brand-darkBg/70 p-4 rounded-xl border border-brand-border/60">
+                        <span class="text-xs text-gray-400 font-bold block mb-1" data-i18n="gfx_fps">معدل الإطارات (High FPS)</span>
+                        <span id="rec-gfx-fps" class="text-lg font-black text-brand-yellow">مرتفع (High / Ultra)</span>
+                    </div>
+
+                    <div class="bg-brand-darkBg/70 p-4 rounded-xl border border-brand-border/60">
+                        <span class="text-xs text-gray-400 font-bold block mb-1" data-i18n="gfx_shadows">الظلال (Shadows)</span>
+                        <span id="rec-gfx-shadows" class="text-lg font-black text-brand-red">إيقاف (Off)</span>
+                    </div>
+
+                    <div class="bg-brand-darkBg/70 p-4 rounded-xl border border-brand-border/60">
+                        <span class="text-xs text-gray-400 font-bold block mb-1" data-i18n="gfx_res">الدقة العالية (High Res)</span>
+                        <span id="rec-gfx-res" class="text-lg font-black text-white">عادي (Normal)</span>
+                    </div>
+
+                    <div class="bg-brand-darkBg/70 p-4 rounded-xl border border-brand-border/60">
+                        <span class="text-xs text-gray-400 font-bold block mb-1" data-i18n="gfx_autoscale">تعديل الشاشة (Auto Scale)</span>
+                        <span id="rec-gfx-autoscale" class="text-lg font-black text-green-400">تفعيل (On)</span>
+                    </div>
+
+                    <div class="bg-brand-darkBg/70 p-4 rounded-xl border border-brand-border/60">
+                        <span class="text-xs text-gray-400 font-bold block mb-1" data-i18n="gfx_style">نمط الألوان (Filter)</span>
+                        <span id="rec-gfx-style" class="text-lg font-black text-brand-purple">زاهي (Vivid)</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: PLATFORMS (MOBILE VS PC EMULATOR) -->
+        <section id="sec-platforms" class="tab-content hidden space-y-6">
+            <div class="glass-card rounded-2xl p-6 space-y-6">
+                <div class="border-b border-brand-border/60 pb-4">
+                    <h2 class="text-2xl font-extrabold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-gamepad text-brand-purple"></i>
+                        <span data-i18n="plat_title">إعدادات المحاكيات والهواتف المخصصة</span>
+                    </h2>
+                    <p class="text-xs text-gray-400 mt-1" data-i18n="plat_desc">اختر منصتك للحصول على أفضل التهيئات لمنع اللاق وزيادة السلاسة</p>
+                </div>
+
+                <div class="flex gap-2 border-b border-brand-border/40 pb-3">
+                    <button onclick="switchPlatformSub('mobile')" id="sub-btn-mobile" class="sub-plat-btn active px-4 py-2 rounded-lg text-xs font-bold bg-brand-blue text-black">
+                        <i class="fa-solid fa-mobile-screen"></i> <span data-i18n="sub_mobile">الهواتف الذكية (Android/iOS)</span>
+                    </button>
+                    <button onclick="switchPlatformSub('emulator')" id="sub-btn-emulator" class="sub-plat-btn px-4 py-2 rounded-lg text-xs font-bold bg-brand-darkBg text-gray-400 hover:text-white">
+                        <i class="fa-solid fa-desktop"></i> <span data-i18n="sub_emulator">محاكيات الكمبيوتر (PC Emulators)</span>
+                    </button>
+                </div>
+
+                <div id="sub-content-mobile" class="space-y-4">
+                    <div class="bg-brand-darkBg/60 p-4 rounded-xl border border-brand-border/40 space-y-2">
+                        <h3 class="font-bold text-brand-yellow text-sm flex items-center gap-2">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i> <span data-i18n="mob_tips_title">نصائح تسريع الهاتف ومنع تسريع الماوس/اللمس</span>
+                        </h3>
+                        <ul class="list-disc list-inside text-xs text-gray-300 space-y-1.5 leading-relaxed">
+                            <li data-i18n="mob_tip1">قم بزيادة سرعة المؤشر (Pointer Speed) إلى أقصى درجة من إعدادات النظام.</li>
+                            <li data-i18n="mob_tip2">قم بتفعيل "إلغاء تفعيل تسريع اللمس" أو Game Turbo إن كان متاحاً في هاتفك.</li>
+                            <li data-i18n="mob_tip3">اجعل حجم زر الإطلاق بين 45% و 52% وسحبه دائماً لأسفل الشاشة قليلاً.</li>
+                            <li data-i18n="mob_tip4">تأكد من تنظيف الذاكرة العشوائية RAM قبل بدء اللعبة ومسح التخزين المؤقت.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="sub-content-emulator" class="hidden space-y-4">
+                    <div class="bg-brand-darkBg/60 p-4 rounded-xl border border-brand-border/40 space-y-2">
+                        <h3 class="font-bold text-brand-blue text-sm flex items-center gap-2">
+                            <i class="fa-solid fa-laptop"></i> LDPlayer 9 / BlueStacks 5
+                        </h3>
+                        <p class="text-xs text-gray-300" data-i18n="emu_ld_desc">
+                            حساسية الماوس X (الأفقي): <strong>2.25</strong> | حساسية الماوس Y (الرأسي للهيدشوت): <strong>3.10</strong><br>
+                            DPI المحاكي: <strong>240 DPI</strong> | الدقة: <strong>1600x900</strong>
+                        </p>
+                    </div>
+
+                    <div class="bg-brand-darkBg/60 p-4 rounded-xl border border-brand-border/40 space-y-2">
+                        <h3 class="font-bold text-brand-red text-sm flex items-center gap-2">
+                            <i class="fa-solid fa-bolt"></i> SmartGaaga (الأجهزة الضعيفة)
+                        </h3>
+                        <p class="text-xs text-gray-300" data-i18n="emu_smart_desc">
+                            حساسية X: <strong>1.80</strong> | حساسية Y: <strong>2.80</strong><br>
+                            تحديد الأنوية: 2 Cores | تحديد الرام: 2048 MB | نمط OpenGL.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: SOCIAL & CONTACT -->
+        <section id="sec-social" class="tab-content hidden space-y-6">
+            <div class="glass-card rounded-2xl p-6 text-center space-y-6">
+                <div class="max-w-xl mx-auto space-y-2">
+                    <h2 class="text-3xl font-black text-white gradient-text-vip" data-i18n="social_title">انضم إلى مجتمعنا الرسمي</h2>
+                    <p class="text-xs text-gray-400" data-i18n="social_desc">تابعنا للحصول على أحدث أكواد التحديثات والحساسيات الخاصة بكل تحديث جديد</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto pt-4">
+                    <a href="https://whatsapp.com/channel/0029VbD4lmYKQuJFAxU2Lo0d" target="_blank" rel="noopener noreferrer" class="p-5 rounded-2xl bg-gradient-to-b from-green-500/20 to-green-600/10 border border-green-500/40 hover:border-green-400 hover:scale-105 transition-all duration-300 group flex flex-col items-center gap-3 cursor-pointer">
+                        <div class="w-14 h-14 rounded-2xl bg-green-500 flex items-center justify-center text-black text-2xl font-bold shadow-lg group-hover:rotate-6 transition">
+                            <i class="fa-brands fa-whatsapp text-3xl text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-white text-base">WhatsApp</h3>
+                            <p class="text-[11px] text-green-300" data-i18n="soc_wa">قناة الواتساب الرسمية</p>
+                        </div>
+                    </a>
+
+                    <a href="https://www.youtube.com/@hamada2013EL" target="_blank" rel="noopener noreferrer" class="p-5 rounded-2xl bg-gradient-to-b from-red-600/20 to-red-700/10 border border-red-500/40 hover:border-red-400 hover:scale-105 transition-all duration-300 group flex flex-col items-center gap-3 cursor-pointer">
+                        <div class="w-14 h-14 rounded-2xl bg-red-600 flex items-center justify-center text-white text-2xl font-bold shadow-lg group-hover:rotate-6 transition">
+                            <i class="fa-brands fa-youtube text-3xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-white text-base">YouTube</h3>
+                            <p class="text-[11px] text-red-300" data-i18n="soc_yt">قناة اليوتيوب الرسمية</p>
+                        </div>
+                    </a>
+
+                    <a href="https://tiktok.com/@hamada2013el" target="_blank" rel="noopener noreferrer" class="p-5 rounded-2xl bg-gradient-to-b from-pink-500/20 to-purple-600/10 border border-pink-500/40 hover:border-pink-400 hover:scale-105 transition-all duration-300 group flex flex-col items-center gap-3 cursor-pointer">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-pink-500 to-cyan-400 flex items-center justify-center text-black text-2xl font-bold shadow-lg group-hover:rotate-6 transition">
+                            <i class="fa-brands fa-tiktok text-3xl text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-white text-base">TikTok</h3>
+                            <p class="text-[11px] text-pink-300" data-i18n="soc_tt">حساب التيك توك الرسمي</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-brand-border/40 py-4 text-center text-xs text-gray-400 space-y-1">
+        <p class="font-bold text-gray-300">تم الإنشاء بواسطة <span class="text-brand-yellow">hamada2013EL</span></p>
+        <p class="text-[10px] text-gray-500">© 2026 VIP-SENSI PRO | جميع الحقوق محفوظة</p>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        /* Passcode Protection System */
+        const APP_PASSCODE = "1234";
+
+        function checkPasscode() {
+            const input = document.getElementById('passcode-input').value;
+            const errorMsg = document.getElementById('passcode-error');
+            const screen = document.getElementById('passcode-screen');
+
+            if (input === APP_PASSCODE) {
+                screen.classList.add('opacity-0', 'pointer-events-none');
+                setTimeout(() => screen.remove(), 300);
+            } else {
+                errorMsg.classList.remove('hidden');
+                document.getElementById('passcode-input').value = '';
+            }
+        }
+
+        document.getElementById('passcode-input')?.addEventListener('keyup', function(e) {
+            if (e.key === 'Enter') checkPasscode();
+        });
+
+        /* Translations Dictionary */
+        const translations = {
             ar: {
-                passTitle: "VIP-SENSI PRO", passSub: "أدخل رمز الدخول لفتح التطبيق", passBtn: "دخول", passErr: "رمز الدخول خاطئ!",
-                headerSub: "فاحص الحساسية والأداء المطور", titleScan: "🔍 فحص الجهاز وقراءة الفريمات",
-                descScan: "سيتم عمل اختبار أداء حقيقي لمدة 3 ثوانٍ لقياس الـ FPS وضمان عدم سخونة الموبايل.",
-                btnScan: "ابدأ الفحص الشامل", lblFps: "الفريمات الفعلية", lblRam: "الرامات التقديرية",
-                lblCores: "أنوية المعالج", lblScreen: "أبعاد الشاشة", lblGpu: "كارت الشاشة",
-                titleGfx: "🎮 توصية الجرافيكس وحماية الهاتف", titleSensi: "🎯 الحساسية الموصى بها",
-                lblGen: "عام (General)", lblRed: "نقطة حمراء (Red Dot)", lbl2x: "سكوب 2x", lbl4x: "سكوب 4x",
-                lblSniper: "قناصة (Sniper)", lblFree: "نظرة حرة", lblBtn: "حجم زر أطلق النار", lblDpi: "الـ DPI المقترح",
-                titleEmu: "💻 إعدادات المحاكي / الكمبيوتر", titleSocial: "📢 مجتمعنا ورسائل التواصل"
+                app_tagline: "أداة الحساسية واختبار النظام الفائقة الذكية",
+                nav_sensi: "إعدادات الحساسية",
+                nav_device: "فحص الجهاز والـ FPS",
+                nav_graphics: "الجرافيكس الموصى به",
+                nav_platforms: "المحاكي / الهاتف",
+                nav_social: "تواصل معنا",
+                sensi_title: "حساسية هيدشوت فاخرة (مستخلصة من جهازك)",
+                sensi_desc: "تم ضبط القيم تلقائياً بناءً على فحص سرعة وإمكانيات جهازك الفعلي",
+                preset_auto: "حساسية جهازك الذكية (Auto)",
+                preset_pro: "لاعب محترف",
+                sens_general: "عام (General)",
+                sens_reddot: "نقطة حمراء (Red Dot)",
+                sens_2x: "عدسة 2X (2x Scope)",
+                sens_4x: "عدسة 4X (4x Scope)",
+                sens_sniper: "عدسة القناصة (Sniper)",
+                sens_freelook: "نظرة حرة (Free Look)",
+                btn_fire_size: "حجم زر الإطلاق",
+                dpi_rec: "مستشعر الـ DPI الموصى به لجهازك",
+                dpi_hint: "تم حسابه بناءً على ذاكرة ورام جهازك الحالي.",
+                btn_copy_all: "نسخ كافة الإعدادات الحالية",
+                diag_title: "فحص وإحصائيات الجهاز الحية",
+                diag_desc: "قراءة دقيقة جداً لخصائص النظام والمشغل ومعدل الفريمات الحقيقي",
+                btn_recheck: "إعادة الفحص",
+                card_fps: "معدل الفريمات الحقيقي",
+                card_device_type: "نوع الجهاز",
+                card_cpu: "أنواة المعالج",
+                card_ram: "الرام التقديرية",
+                sec_display: "الشاشة واللمس",
+                lbl_res: "دقة الشاشة:",
+                lbl_pixel_ratio: "كثافة البكسل:",
+                lbl_touch_points: "نقاط اللمس المتعدد:",
+                sec_gpu: "معالج الرسوميات (GPU)",
+                lbl_gpu_vendor: "المُصنّع:",
+                lbl_gpu_renderer: "كرت الشاشة:",
+                lbl_battery: "مستوى البطارية:",
+                gfx_title: "إعدادات الجرافيكس الموصى بها تلقائياً",
+                gfx_desc: "بناءً على فحص إمكانيات كرت الشاشة والرام والفريمات الخاصة بجهازك",
+                gfx_preset_label: "النمط الأنسب لجهازك:",
+                gfx_quality: "جودة الجرافيكس (Graphics)",
+                gfx_fps: "معدل الإطارات (High FPS)",
+                gfx_shadows: "الظلال (Shadows)",
+                gfx_res: "الدقة العالية (High Res)",
+                gfx_autoscale: "تعديل الشاشة (Auto Scale)",
+                gfx_style: "نمط الألوان (Filter)",
+                plat_title: "إعدادات المحاكيات والهواتف المخصصة",
+                plat_desc: "اختر منصتك للحصول على أفضل التهيئات لمنع اللاق وزيادة السلاسة",
+                sub_mobile: "الهواتف الذكية (Android/iOS)",
+                sub_emulator: "محاكيات الكمبيوتر (PC Emulators)",
+                mob_tips_title: "نصائح تسريع الهاتف ومنع تسريع الماوس/اللمس",
+                mob_tip1: "قم بزيادة سرعة المؤشر (Pointer Speed) إلى أقصى درجة من إعدادات النظام.",
+                mob_tip2: "قم بتفعيل إلغاء تفعيل تسريع اللمس أو Game Turbo إن كان متاحاً.",
+                mob_tip3: "اجعل حجم زر الإطلاق بين 45% و 52% وسحبه دائماً لأسفل الشاشة قليلاً.",
+                mob_tip4: "تأكد من تنظيف الذاكرة العشوائية RAM قبل بدء اللعبة ومسح التخزين المؤقت.",
+                emu_ld_desc: "حساسية الماوس X (الأفقي): 2.25 | حساسية الماوس Y (الرأسي للهيدشوت): 3.10 | DPI المحاكي: 240 DPI | الدقة: 1600x900",
+                emu_smart_desc: "حساسية X: 1.80 | حساسية Y: 2.80 | تحديد الأنوية: 2 Cores | تحديد الرام: 2048 MB | نمط OpenGL.",
+                social_title: "انضم إلى مجتمعنا الرسمي",
+                social_desc: "تابعنا للحصول على أحدث أكواد التحديثات والحساسيات الخاصة بكل تحديث جديد",
+                soc_wa: "قناة الواتساب الرسمية",
+                soc_yt: "قناة اليوتيوب الرسمية",
+                soc_tt: "حساب التيك توك الرسمي",
+                toast_copied: "تم نسخ الإعدادات بنجاح إلى الحافظة!"
+            },
+            eg: {
+                app_tagline: "أقوى أداة حساسيات وفحص تلفونات في مصر والعالم",
+                nav_sensi: "الحساسية والهيدشوت",
+                nav_device: "فحص التلفون والـ FPS",
+                nav_graphics: "أحسن جرافيكس لجهازك",
+                nav_platforms: "كمبيوتر ولا موبايل",
+                nav_social: "اتواصل معانا",
+                sensi_title: "حساسية طلقات كلها هيدشوت (مستخلصة من جهازك)",
+                sensi_desc: "متظبطة أوتوماتيك على سرعة تلفونك الحقيقي عشان الأيم مايفرطش",
+                preset_auto: "حساسية جهازك الذكية (Auto)",
+                preset_pro: "لاعب حريف",
+                sens_general: "عام (General)",
+                sens_reddot: "النقطة الحمرا (Red Dot)",
+                sens_2x: "سكوب 2 (2x Scope)",
+                sens_4x: "سكوب 4 (4x Scope)",
+                sens_sniper: "سكوب القناصة (Sniper)",
+                sens_freelook: "بصة حرة (Free Look)",
+                btn_fire_size: "حجم زرار الضرب",
+                dpi_rec: "الـ DPI المضبوط لتلفونك حسب راماته",
+                dpi_hint: "متظبطة خصيصاً على هاردوير جهازك عشان الشاشة تجري.",
+                btn_copy_all: "انسخ الإعدادات دي كلها",
+                diag_title: "امكانيات جهازك والفريمات الحقيقية",
+                diag_desc: "بيقرأ الرام والمعالج وكرت الشاشة والفريمات اللي شغال بيها حالياً بالضبط",
+                btn_recheck: "افحص تاني",
+                card_fps: "الفريمات الحقيقية (FPS)",
+                card_device_type: "نوع الجهاز",
+                card_cpu: "عدد أنوية البروسيسور",
+                card_ram: "الرامات التقديرية",
+                sec_display: "الشاشة والتاتش",
+                lbl_res: "دقة الشاشة:",
+                lbl_pixel_ratio: "كثافة الشاشة:",
+                lbl_touch_points: "عدد الصوابع (التاتش):",
+                sec_gpu: " كرت الشاشة (GPU)",
+                lbl_gpu_vendor: "الشركة المصنعة:",
+                lbl_gpu_renderer: "اسم كرت الشاشة:",
+                lbl_battery: "شحن البطارية:",
+                gfx_title: "إعدادات الجرافيكس اللي تمشي مع جهازك",
+                gfx_desc: "عشان اللعبة تشتغل سلسة ومن غير لاق ولا تهنيج",
+                gfx_preset_label: "الوضعية المناسبة لجهازك:",
+                gfx_quality: "جودة الصورة (Graphics)",
+                gfx_fps: "معدل الإطارات (High FPS)",
+                gfx_shadows: "الظلال (Shadows)",
+                gfx_res: "دقة الجرافيك (High Res)",
+                gfx_autoscale: "تظبيط الشاشة (Auto Scale)",
+                gfx_style: "ألوان اللعبة (Filter)",
+                plat_title: "تظبيط المحاكيات والتلفونات",
+                plat_desc: "اختار جهازك وشوف أحسن تظبيطة عشان اللاج يختفي خالص",
+                sub_mobile: "تلفونات (أندرويد / آيفون)",
+                sub_emulator: "محاكي كمبيوتر (PC Emulators)",
+                mob_tips_title: "نصائح لتسريع التاتش والموبايل",
+                mob_tip1: "على سرعة المؤشر (Pointer Speed) لآخر حاجة من إعدادات الموبايل.",
+                mob_tip2: "شغل جيم توربو (Game Turbo) واقفل تسريع التاتش العشوائي.",
+                mob_tip3: "خلي زرار الضرب بين 45% و 52% ونزله لتحت شوية في الشاشة.",
+                mob_tip4: "امسح الـ RAM واقفل كل التطبيقات قبل ما تفتح فري فاير.",
+                emu_ld_desc: "حساسية الماوس X (يمين وشمال): 2.25 | حساسية Y (فوق وتحت): 3.10 | DPI المحاكي: 240 | الشاشة: 1600x900",
+                emu_smart_desc: "حساسية X: 1.80 | حساسية Y: 2.80 | الأنوية: 2 | الرام: 2048 ميجا | نظام OpenGL.",
+                social_title: "تنورنا في قناتنا وحساباتنا الرسمية",
+                social_desc: "اشترك عشان يوصلك كل الحساسيات الجديدة والأكواد أول بأول",
+                soc_wa: "قناة الواتساب الرسمية",
+                soc_yt: "قناة اليوتيوب الرسمية",
+                soc_tt: "حساب التيك توك الرسمي",
+                toast_copied: "تم نسخ جميع الإعدادات يا عالمي!"
             },
             en: {
-                passTitle: "VIP-SENSI PRO", passSub: "Enter passcode to unlock", passBtn: "Unlock", passErr: "Incorrect Passcode!",
-                headerSub: "Pro Sensitivity & Performance Scanner", titleScan: "🔍 Device & FPS Scan",
-                descScan: "A live 3-second test will measure real FPS to prevent phone overheating.",
-                btnScan: "Start Full Scan", lblFps: "Measured FPS", lblRam: "Est. RAM",
-                lblCores: "CPU Cores", lblScreen: "Screen Size", lblGpu: "GPU Graphics",
-                titleGfx: "🎮 Graphics & Thermal Protection", titleSensi: "🎯 Recommended Sensitivity",
-                lblGen: "General", lblRed: "Red Dot", lbl2x: "2x Scope", lbl4x: "4x Scope",
-                lblSniper: "Sniper", lblFree: "Free Look", lblBtn: "Fire Button", lblDpi: "Suggested DPI",
-                titleEmu: "💻 PC / Emulator Settings", titleSocial: "📢 Join Our Community"
+                app_tagline: "ULTIMATE SENSITIVITY & HARDWARE DIAGNOSTICS TOOL",
+                nav_sensi: "Sensitivity Setup",
+                nav_device: "Device & Live FPS",
+                nav_graphics: "Recommended GFX",
+                nav_platforms: "Emulator / Phone",
+                nav_social: "Social & Contact",
+                sensi_title: "VIP Headshot Sensitivity (Hardware-Synced)",
+                sensi_desc: "Values auto-adjusted based on your real hardware capability and RAM",
+                preset_auto: "Smart Device Sensi (Auto)",
+                preset_pro: "Pro Player",
+                sens_general: "General",
+                sens_reddot: "Red Dot",
+                sens_2x: "2x Scope",
+                sens_4x: "4x Scope",
+                sens_sniper: "Sniper Scope",
+                sens_freelook: "Free Look",
+                btn_fire_size: "Fire Button Size",
+                dpi_rec: "Recommended Device DPI",
+                dpi_hint: "Calculated based on your actual device performance and RAM.",
+                btn_copy_all: "Copy All Settings",
+                diag_title: "Live Hardware & Benchmark",
+                diag_desc: "Real-time accuracy readings of GPU, CPU Cores, Estimated RAM & Frame Rate",
+                btn_recheck: "Re-check",
+                card_fps: "Realtime FPS",
+                card_device_type: "Device Type",
+                card_cpu: "CPU Cores",
+                card_ram: "Estimated RAM",
+                sec_display: "Display & Touch",
+                lbl_res: "Resolution:",
+                lbl_pixel_ratio: "Pixel Ratio:",
+                lbl_touch_points: "Touch Points:",
+                sec_gpu: "Graphics Processor (GPU)",
+                lbl_gpu_vendor: "Vendor:",
+                lbl_gpu_renderer: "Renderer:",
+                lbl_battery: "Battery Level:",
+                gfx_title: "Auto-Recommended Graphics",
+                gfx_desc: "Tailored based on your device GPU, CPU and screen benchmark",
+                gfx_preset_label: "Optimal Profile:",
+                gfx_quality: "Graphics Quality",
+                gfx_fps: "High FPS Mode",
+                gfx_shadows: "Shadows",
+                gfx_res: "High Resolution",
+                gfx_autoscale: "Auto Scale",
+                gfx_style: "Color Style",
+                plat_title: "Platform Optimization",
+                plat_desc: "Choose your platform for maximum stability and lag removal",
+                sub_mobile: "Mobile Devices (Android/iOS)",
+                sub_emulator: "PC Emulators",
+                mob_tips_title: "Mobile Touch Acceleration & Speed Tips",
+                mob_tip1: "Set System Pointer Speed to Maximum in Settings.",
+                mob_tip2: "Enable Game Turbo / Game Space mode to stabilize FPS.",
+                mob_tip3: "Set Fire Button size between 45% - 52% and pull down slightly.",
+                mob_tip4: "Clear RAM background apps before launching Free Fire.",
+                emu_ld_desc: "Mouse X Sens: 2.25 | Mouse Y Sens (Headshot): 3.10 | Emulator DPI: 240 | Res: 1600x900",
+                emu_smart_desc: "Sens X: 1.80 | Sens Y: 2.80 | Cores: 2 | RAM: 2048 MB | Mode: OpenGL.",
+                social_title: "Join Our Official Channels",
+                social_desc: "Follow us to get update sensitivity codes and settings directly",
+                soc_wa: "Official WhatsApp Channel",
+                soc_yt: "Official YouTube Channel",
+                soc_tt: "Official TikTok Account",
+                toast_copied: "All settings copied to clipboard!"
             }
         };
 
-        function checkPasscode() {
-            const val = document.getElementById('passInput').value;
-            if (val === PASSCODE) {
-                document.getElementById('passcode-overlay').style.display = 'none';
-            } else {
-                document.getElementById('passErr').style.display = 'block';
-            }
-        }
+        let currentLang = 'ar';
 
-        function setLang(lang) {
-            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-            event.target.classList.add('active');
-            const d = langData[lang];
+        function changeLanguage(lang) {
+            currentLang = lang;
+            const dict = translations[lang] || translations.ar;
             
-            for (let k in d) {
-                let el = document.getElementById(k);
-                if (el) el.innerText = d[k];
+            if (lang === 'en') {
+                document.documentElement.dir = 'ltr';
+                document.documentElement.lang = 'en';
+                document.body.style.fontFamily = "'Inter', sans-serif";
+            } else {
+                document.documentElement.dir = 'rtl';
+                document.documentElement.lang = lang;
+                document.body.style.fontFamily = "'Cairo', sans-serif";
             }
-        }
 
-        function getGPU() {
-            try {
-                const canvas = document.createElement('canvas');
-                const gl = canvas.getContext('webgl');
-                if(!gl) return "Generic GPU";
-                const ext = gl.getExtension('WEBGL_debug_renderer_info');
-                return ext ? gl.getParameter(ext.UNMASKED_RENDERER_WEBGL) : "Mobile GPU";
-            } catch(e) { return "Mobile Renderer"; }
-        }
-
-        function startScan() {
-            const pBar = document.getElementById('pBar');
-            const pFill = document.getElementById('pFill');
-            const btn = document.getElementById('btnScan');
-
-            pBar.style.display = 'block';
-            btn.disabled = true;
-            btn.style.opacity = '0.6';
-
-            let count = 0;
-            let start = performance.now();
-
-            function frameStep() {
-                count++;
-                let elapsed = performance.now() - start;
-                pFill.style.width = Math.min(100, (elapsed / 3000) * 100) + '%';
-
-                if (elapsed < 3000) {
-                    requestAnimationFrame(frameStep);
-                } else {
-                    let realFps = Math.round((count * 1000) / elapsed);
-                    renderResults(realFps);
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (dict[key]) {
+                    el.innerText = dict[key];
                 }
-            }
-            requestAnimationFrame(frameStep);
+            });
+
+            runHardwareDiagnostics();
         }
 
-        function renderResults(fps) {
-            document.getElementById('pBar').style.display = 'none';
-            document.getElementById('infoGrid').style.display = 'grid';
-            document.getElementById('cardGfx').style.display = 'block';
-            document.getElementById('cardSensi').style.display = 'block';
-            document.getElementById('thermalAlert').style.display = 'block';
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-brand-red', 'text-white', 'neon-glow-red');
+                btn.classList.add('text-gray-400');
+            });
 
-            const btn = document.getElementById('btnScan');
-            btn.disabled = false;
-            btn.style.opacity = '1';
+            const activeContent = document.getElementById(`sec-${tabId}`);
+            const activeBtn = document.getElementById(`tab-btn-${tabId}`);
 
+            if (activeContent) activeContent.classList.remove('hidden');
+            if (activeBtn) {
+                activeBtn.classList.add('bg-brand-red', 'text-white', 'neon-glow-red');
+                activeBtn.classList.remove('text-gray-400');
+            }
+        }
+
+        function switchPlatformSub(subId) {
+            document.getElementById('sub-content-mobile').classList.add('hidden');
+            document.getElementById('sub-content-emulator').classList.add('hidden');
+            
+            document.getElementById('sub-btn-mobile').classList.remove('bg-brand-blue', 'text-black');
+            document.getElementById('sub-btn-mobile').classList.add('bg-brand-darkBg', 'text-gray-400');
+            document.getElementById('sub-btn-emulator').classList.remove('bg-brand-blue', 'text-black');
+            document.getElementById('sub-btn-emulator').classList.add('bg-brand-darkBg', 'text-gray-400');
+
+            document.getElementById(`sub-content-${subId}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`sub-btn-${subId}`);
+            activeBtn.classList.add('bg-brand-blue', 'text-black');
+            activeBtn.classList.remove('bg-brand-darkBg', 'text-gray-400');
+        }
+
+        function updateSensVal(type, val) {
+            if (type === 'button') {
+                document.getElementById(`val-${type}`).innerText = `${val}%`;
+            } else {
+                document.getElementById(`val-${type}`).innerText = val;
+            }
+        }
+
+        /* HARDWARE-BASED DYNAMIC SENSITIVITY GENERATOR */
+        function applyPreset(preset) {
+            let selected = {};
             const ram = navigator.deviceMemory || 4;
             const cores = navigator.hardwareConcurrency || 4;
 
-            document.getElementById('valFps').innerText = fps + " FPS";
-            document.getElementById('valRam').innerText = "~" + ram + " GB";
-            document.getElementById('valCores').innerText = cores + " Cores";
-            document.getElementById('valScreen').innerText = `${window.screen.width}x${window.screen.height}`;
-            document.getElementById('valGpu').innerText = getGPU();
-
-            let gfx = "";
-            let btnSize = 48;
-            let gen = 96;
-
-            if (fps < 45 || ram <= 3) {
-                gfx = "⚙️ الإعداد الموصى به: ناعم / سلس (Smooth) لتقليل الحرارة";
-                gen = 100;
-                btnSize = 45;
-            } else if (fps >= 45 && fps < 58) {
-                gfx = "⚙️ الإعداد الموصى به: قياسي (Standard) للحفاظ على ثبات الفريمات";
-                gen = 97;
-                btnSize = 48;
+            if (preset === 'deviceAuto') {
+                // Generate sensitivity based on real hardware specs!
+                if (ram >= 8 || cores >= 8) {
+                    // High-end device -> Balanced smooth precision
+                    selected = { general: 94, reddot: 92, '2x': 89, '4x': 86, sniper: 50, freelook: 65, button: 50, dpi: '480 DPI' };
+                } else if (ram >= 4 || cores >= 4) {
+                    // Mid-range device -> Agile and responsive
+                    selected = { general: 98, reddot: 95, '2x': 92, '4x': 89, sniper: 55, freelook: 70, button: 48, dpi: '560 DPI' };
+                } else {
+                    // Low-end device -> Fast high sensitivity to compensate hardware delay
+                    selected = { general: 105, reddot: 100, '2x': 96, '4x': 92, sniper: 65, freelook: 80, button: 45, dpi: '640 DPI' };
+                }
             } else {
-                gfx = "⚙️ الإعداد الموصى به: قياسي (Standard) / ناعم لحماية البطارية والمعالج";
-                gen = 94;
-                btnSize = 50;
+                selected = { general: 98, reddot: 95, '2x': 92, '4x': 89, sniper: 60, freelook: 75, button: 48, dpi: '560 DPI' };
             }
 
-            document.getElementById('gfxResult').innerText = gfx;
-            document.getElementById('vGen').innerText = gen;
-            document.getElementById('vRed').innerText = Math.min(100, gen + 2);
-            document.getElementById('v2x').innerText = Math.min(100, gen + 1);
-            document.getElementById('v4x').innerText = gen - 2;
-            document.getElementById('vSniper').innerText = "50";
-            document.getElementById('vFree').innerText = "65";
-            document.getElementById('vBtn').innerText = btnSize + "%";
-            document.getElementById('vDpi').innerText = ram >= 6 ? "480" : "تخطي / افتراضي";
+            for (let key in selected) {
+                if (key === 'dpi') {
+                    document.getElementById('val-dpi').innerText = selected[key];
+                } else {
+                    const slider = document.getElementById(`sens-${key}`);
+                    if (slider) {
+                        slider.value = selected[key];
+                        updateSensVal(key, selected[key]);
+                    }
+                }
+            }
+            showToast(currentLang === 'en' ? 'Smart device sensitivity applied!' : 'تم توليد وتطبيق حساسية جهازك الذكية بنجاح!');
+        }
 
-            if (!/Mobi|Android/i.test(navigator.userAgent)) {
-                document.getElementById('cardEmu').style.display = 'block';
+        function copyAllSensitivity() {
+            const g = document.getElementById('val-general').innerText;
+            const r = document.getElementById('val-reddot').innerText;
+            const x2 = document.getElementById('val-2x').innerText;
+            const x4 = document.getElementById('val-4x').innerText;
+            const sn = document.getElementById('val-sniper').innerText;
+            const fl = document.getElementById('val-freelook').innerText;
+            const btn = document.getElementById('val-button').innerText;
+            const dpi = document.getElementById('val-dpi').innerText;
+
+            const text = `🔥 VIP-SENSI PRO (Hardware Synced) 🔥\n• General: ${g}\n• Red Dot: ${r}\n• 2x Scope: ${x2}\n• 4x Scope: ${x4}\n• Sniper: ${sn}\n• Free Look: ${fl}\n• Fire Button: ${btn}\n• Recommended DPI: ${dpi}`;
+
+            const dummy = document.createElement("textarea");
+            document.body.appendChild(dummy);
+            dummy.value = text;
+            dummy.select();
+            document.execCommand("copy");
+            document.body.removeChild(dummy);
+
+            const dict = translations[currentLang] || translations.ar;
+            showToast(dict.toast_copied);
+        }
+
+        function showToast(msg) {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = 'bg-brand-red text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow-2xl flex items-center gap-2 border border-white/20 transition-all duration-300 transform translate-y-2 opacity-0';
+            toast.innerHTML = `<i class="fa-solid fa-circle-check"></i> ${msg}`;
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            }, 10);
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-2');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        let frameCount = 0;
+        let lastTime = performance.now();
+        function calculateFPS(now) {
+            frameCount++;
+            if (now >= lastTime + 1000) {
+                const fps = Math.round((frameCount * 1000) / (now - lastTime));
+                document.getElementById('live-fps').innerText = fps;
+                frameCount = 0;
+                lastTime = now;
+            }
+            requestAnimationFrame(calculateFPS);
+        }
+
+        function runHardwareDiagnostics() {
+            const ua = navigator.userAgent;
+            let deviceType = "PC / Laptop";
+            let osName = "Windows / Linux / macOS";
+
+            if (/Android/i.test(ua)) {
+                deviceType = "Android Phone";
+                osName = "Android OS";
+            } else if (/iPhone|iPad|iPod/i.test(ua)) {
+                deviceType = "iOS Device";
+                osName = "iOS";
+            } else if (/Tablet|iPad/i.test(ua)) {
+                deviceType = "Tablet";
+            }
+
+            document.getElementById('info-device-type').innerText = deviceType;
+            document.getElementById('info-os').innerText = osName;
+
+            const cores = navigator.hardwareConcurrency || 4;
+            document.getElementById('info-cpu-cores').innerText = cores;
+
+            const ram = navigator.deviceMemory || 4;
+            document.getElementById('info-ram').innerText = `~${ram} GB`;
+
+            document.getElementById('info-screen-res').innerText = `${window.screen.width} x ${window.screen.height}`;
+            document.getElementById('info-pixel-ratio').innerText = `${window.devicePixelRatio || 1}x`;
+            document.getElementById('info-touch').innerText = navigator.maxTouchPoints ? `${navigator.maxTouchPoints} Points` : "None (Mouse)";
+
+            try {
+                const canvas = document.createElement('canvas');
+                const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+                if (gl) {
+                    const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+                    if (debugInfo) {
+                        const vendor = gl.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL);
+                        const renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
+                        document.getElementById('info-gpu-vendor').innerText = vendor || "Generic";
+                        document.getElementById('info-gpu-renderer').innerText = renderer || "WebGL Engine";
+                    } else {
+                        document.getElementById('info-gpu-vendor').innerText = "WebGL Supported";
+                        document.getElementById('info-gpu-renderer').innerText = "Standard GPU";
+                    }
+                } else {
+                    document.getElementById('info-gpu-vendor').innerText = "N/A";
+                    document.getElementById('info-gpu-renderer').innerText = "Not Supported";
+                }
+            } catch (e) {
+                document.getElementById('info-gpu-vendor').innerText = "Protected";
+                document.getElementById('info-gpu-renderer').innerText = "Protected";
+            }
+
+            if (navigator.getBattery) {
+                navigator.getBattery().then(battery => {
+                    const level = Math.round(battery.level * 100);
+                    document.getElementById('info-battery').innerText = `${level}% ${battery.charging ? '⚡ (Charging)' : ''}`;
+                });
+            } else {
+                document.getElementById('info-battery').innerText = "N/A";
+            }
+
+            // Automatically generate optimal device-based sensitivity & graphics on startup
+            applyPreset('deviceAuto');
+            evaluateRecommendedGraphics(cores, ram);
+        }
+
+        function evaluateRecommendedGraphics(cores, ram) {
+            const presetName = document.getElementById('gfx-preset-name');
+            const quality = document.getElementById('rec-gfx-quality');
+            const fps = document.getElementById('rec-gfx-fps');
+            const shadows = document.getElementById('rec-gfx-shadows');
+            const res = document.getElementById('rec-gfx-res');
+
+            if (ram >= 8 || cores >= 8) {
+                presetName.innerText = currentLang === 'en' ? "MAX ULTRA PERFORMANCE" : "نمط الفائق (Ultra Max 90FPS)";
+                quality.innerText = currentLang === 'en' ? "Ultra / Max" : "فائق (Ultra)";
+                fps.innerText = "High / High FPS";
+                shadows.innerText = currentLang === 'en' ? "On" : "تفعيل (On)";
+                res.innerText = currentLang === 'en' ? "High" : "مرتفع (High)";
+            } else if (ram >= 4 || cores >= 4) {
+                presetName.innerText = currentLang === 'en' ? "BALANCED PRO PERFORMANCE" : "نمط متوازن (Standard 60FPS)";
+                quality.innerText = currentLang === 'en' ? "Standard" : "قياسي (Standard)";
+                fps.innerText = "High FPS";
+                shadows.innerText = currentLang === 'en' ? "Off" : "إيقاف (Off)";
+                res.innerText = currentLang === 'en' ? "Normal" : "عادي (Normal)";
+            } else {
+                presetName.innerText = currentLang === 'en' ? "SMOOTH SMOOTH (NO LAG)" : "نمط السلاسة الفائقة (Smooth 60FPS)";
+                quality.innerText = currentLang === 'en' ? "Smooth" : "سلس (Smooth)";
+                fps.innerText = "High FPS";
+                shadows.innerText = currentLang === 'en' ? "Off" : "إيقاف (Off)";
+                res.innerText = currentLang === 'en' ? "Normal" : "عادي (Normal)";
             }
         }
+
+        window.onload = function() {
+            requestAnimationFrame(calculateFPS);
+            runHardwareDiagnostics();
+        };
     </script>
 </body>
 </html>
