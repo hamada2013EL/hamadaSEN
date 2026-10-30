@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIP-SENSI PRO</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0d1117">
+</head>
+<body>
+
+    <!-- شاشة إدخال رمز الدخول -->
+    <div id="login-overlay" class="overlay">
+        <div class="login-box">
+            <h2 id="login-title">🔒 أدخل رمز VIP لتفعيل التطبيق</h2>
+            <p id="login-desc">احصل على الرمز المباشر من القناة الرسمية</p>
+            <input type="password" id="vip-passcode" placeholder="أدخل الكود هنا...">
+            <button onclick="checkPasscode()" id="btn-login">تأكيد الدخول</button>
+            <p id="pass-error" class="error-msg"></p>
+
+            <a href="https://youtube.com" target="_blank" class="channel-btn">📺 رابط القناة للحصول على الكود</a>
+        </div>
+    </div>
+
+    <!-- الواجهة الرئيسية للتطبيق -->
+    <div class="app-container">
+        
+        <!-- الهيدر واختيار اللغة -->
+        <header>
+            <div class="logo-area">
+                <h1>VIP-SENSI <span>PRO</span></h1>
+            </div>
+            <div class="lang-selector">
+                <select id="langSelect" onchange="changeLanguage(this.value)">
+                    <option value="ar">العربية</option>
+                    <option value="egy">مصري (عامية)</option>
+                    <option value="en">English</option>
+                </select>
+            </div>
+        </header>
+
+        <!-- شبكة الخانات المختلفة -->
+        <main class="grid-layout">
+
+            <!-- خانة 1: فحص النظام الحقيقي -->
+            <section class="card red-border">
+                <h3 id="h-sys">📊 فحص النظام والدقة</h3>
+                <div class="sys-info">
+                    <p><strong id="lbl-ram">الرامات التقديرية:</strong> <span id="ram-val">جاري الفحص...</span></p>
+                    <p><strong id="lbl-cpu">أنوية المعالج:</strong> <span id="cpu-val">جاري الفحص...</span></p>
+                    <p><strong id="lbl-fps">معدل الفريمات (FPS):</strong> <span id="fps-val">جاري الحساب...</span></p>
+                    <p><strong id="lbl-res">دقة الشاشة:</strong> <span id="res-val">...</span></p>
+                </div>
+            </section>
+
+            <!-- خانة 2: مولد الحساسية المتطور -->
+            <section class="card green-border">
+                <h3 id="h-gen">🎯 توليد الحساسية المخصصة</h3>
+                <div class="form-group">
+                    <label id="lbl-quality">اختر جودة وطبيعة لعبك:</label>
+                    <select id="playQuality">
+                        <option value="headshot">Focus Headshot (هيد شوت صافي)</option>
+                        <option value="speed">Fast Movement (سعة وسرعة حركة)</option>
+                        <option value="balanced">Balanced (متوازن للرومات والرانك)</option>
+                    </select>
+                </div>
+                <button onclick="generateSensi()" id="btn-gen" class="action-btn">توليد الحساسية المثالية</button>
+                <div id="sensi-result" class="result-box"></div>
+            </section>
+
+            <!-- خانة 3: إعدادات DPI والجودة -->
+            <section class="card blue-border">
+                <h3 id="h-dpi">⚙️ نصائح الـ DPI والجودة</h3>
+                <div id="dpi-info">
+                    <p id="dpi-txt">اضغط على زر التوليد للحصول على أفضل DPI مناسب لمواصفات شاشتك ومعالجك.</p>
+                </div>
+            </section>
+
+            <!-- خانة 4: روابط القناة والدعم -->
+            <section class="card gold-border">
+                <h3 id="h-social">📢 القناة والدعم الفني</h3>
+                <p id="social-desc">تابع كل جديد واطلب حساسية خاصة لجهازك من القناة:</p>
+                <div class="social-links">
+                    <a href="https://youtube.com" target="_blank" class="social-btn yt">اليوتيوب الرسمية</a>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
