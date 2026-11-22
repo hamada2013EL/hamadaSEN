@@ -1,4 +1,4 @@
-/* FF PRO SENSI — إضافة التحديث. الصق هذا الملف كاملاً داخل <script> ... </script> قبل </body> مباشرة */
+
 (function () {
   if (window.__ffAddon) return; window.__ffAddon = 1;
   const $ = id => document.getElementById(id);
