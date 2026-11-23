@@ -1,0 +1,14 @@
+{
+  "background_color": "#ffffff",
+  "dir": "rtl",
+  "display": "standalone",
+  "name": "FF PRO SENSI",
+  "orientation": "any",
+  "scope": "FF PRO SENSI",
+  "short_name": "PRO SENSI",
+  "start_url": "/hamadaff/",
+  "theme_color": "#ffffff",
+  "description": "تطبيق لمساعدتك في فري فاير",
+  "id": "FF PRO SENSI",
+  "lang": "ar"
+}
